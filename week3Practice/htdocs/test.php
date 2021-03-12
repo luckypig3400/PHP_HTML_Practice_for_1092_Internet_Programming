@@ -10,9 +10,14 @@
 
 <body>
     <?php
-        $a = $_POST["test1"];
-        echo "我收到的內容如下:<br>";
-        echo "$a";
+    $name = $_POST["userName"];
+    $email = $_POST["emailVar"];
+    $pwd = $_POST["pwd"];
+    $pwdCheck = $_POST["pwdCheck"];
+    echo "我收到的內容如下:<br>";
+    echo "您好$name <br>";
+    echo "日後請用電子郵件:$email 登入 <br>";
+    echo "您的密碼為:$pwd 請牢記!!!";
     ?>
 </body>
 
