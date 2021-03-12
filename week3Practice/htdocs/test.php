@@ -17,7 +17,11 @@
     echo "我收到的內容如下:<br>";
     echo "您好$name <br>";
     echo "日後請用電子郵件:$email 登入 <br>";
-    echo "您的密碼為:$pwd 請牢記!!!";
+    if ($pwd === $pwdCheck) {
+        echo "您的密碼為:$pwd 請牢記!!!";
+    } else {
+        echo "兩次的密碼輸入不相同 請檢查並重新輸入";
+    }
     ?>
 </body>
 
