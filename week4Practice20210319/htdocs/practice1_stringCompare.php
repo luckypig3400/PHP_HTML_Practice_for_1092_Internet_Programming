@@ -22,8 +22,12 @@
         echo '<h3>接收到的字串如下</h3>字串A:' . $A . '<br>字串B:' . $B;
         echo '<h3>判斷結果如下</h3>';
 
-
-
+        if(strcmp($A,$B) == 0)
+            echo '字串完全相等(絕對相等)';
+        else if(strcasecmp($A,$B) == 0)
+            echo '不分大小寫相等(相對相等)';
+        else
+            echo '不相等';
         ?>
     </body>
 
