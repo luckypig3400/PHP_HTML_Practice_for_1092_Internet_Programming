@@ -17,6 +17,12 @@
     $bmi = $w / ($h * $h);
     echo '身高:' . $h . '公尺<br>' . '體重:' . $w . '公斤<br>';
     echo '<h2>BMI:' . $bmi . '</h2>';
+    if ($bmi < 18.5)
+        echo '<h3>體重過輕</h3>';
+    elseif ($bmi >= 23)
+        echo '<h3>體重過重</h3>';
+    else
+        echo '<h3>正常體位</h3>';
     ?>
 </body>
 
