@@ -8,13 +8,22 @@
         <title>字串比較</title>
     </head>
 
-    <body>
+    <body align="center">
+
+        <h1>字串比較器</h1>
+
         <?php
-        //isset()判斷是否傳遞的參數有填值回傳true/false
-        $A = isset($_POST["strA"]) ? $_POST["strA"] : "";
+        //isset()判斷傳遞的參數是否有被回傳 isset()回傳值為(true/false)
+        $A = isset($_POST["strA"]) ? $_POST["strA"] : "Error相應的變數沒有被傳遞";
         //三元運算子 條件式1 ? 條件式2 : 條件式3
         //如果條件式1成立則執行條件式2否則執行條件式3
-        $B = isset($_POST["strB"]) ? $_POST["strB"] : "";
+        $B = isset($_POST["strB"]) ? $_POST["strB"] : "Error相應的變數沒有被傳遞";
+
+        echo '<h3>接收到的字串如下</h3>字串A:' . $A . '<br>字串B:' . $B;
+        echo '<h3>判斷結果如下</h3>';
+
+
+
         ?>
     </body>
 
