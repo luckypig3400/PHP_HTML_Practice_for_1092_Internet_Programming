@@ -21,7 +21,12 @@
     */
     // 一個陣列所宣告產生的學生姓名
     $Student = array("Derek", "Joe", "Kevin", "Charlton", "Lee", "Martin");
-    
+
+    for ($i = 0; $i < count($Student); $i++) {
+    }
+
+    echo '<h3>陣列中共有' . count($Student) . '個元素</h3>'
+
     ?>
 
 </body>
