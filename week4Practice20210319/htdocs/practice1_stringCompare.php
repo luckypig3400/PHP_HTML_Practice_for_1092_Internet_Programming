@@ -10,7 +10,11 @@
 
     <body>
         <?php
-        
+        //isset()判斷是否傳遞的參數有填值回傳true/false
+        $A = isset($_POST["strA"]) ? $_POST["strA"] : "";
+        //三元運算子 條件式1 ? 條件式2 : 條件式3
+        //如果條件式1成立則執行條件式2否則執行條件式3
+        $B = isset($_POST["strB"]) ? $_POST["strB"] : "";
         ?>
     </body>
 
