@@ -29,12 +29,16 @@
     <body align="center">
         <h1>字串陣列排序(數字)</h1>
 
-        <h3>原始陣列資料如下:</h3>
+        <h3>原始陣列資料排序如下:</h3>
 
         <?php
         $Student = array(array("可達鴨",0), array("皮卡丘",90), array("傑尼龜",70),
         array("妙蛙種子",80), array("胖丁",50), array("臭臭泥",40), array("果然翁",30),
         array("捲捲耳",60), array("帝牙盧卡",100), array("瑪納霏",99));
+
+        for ($i=0; $i < sizeof($Student); $i++) { 
+          echo '姓名:' . $Student[$i][0] . ' 成績:' . $Student[$i][1] . '<br>';
+        }
         ?>
 
     </body>
