@@ -39,6 +39,26 @@
         for ($i=0; $i < sizeof($Student); $i++) { 
           echo '姓名:' . $Student[$i][0] . ' 成績:' . $Student[$i][1] . '<br>';
         }
+
+        echo '<h3>按成績排序後的陣列資料如下:</h3>';
+
+        for($i = 0; $i < sizeof($Student); $i++){
+          for ($j=0; $j < sizeof($Student) - 1; $j++) { 
+            if($Student[$j][1] < $Student[$j+1][1]){
+              $swapName = $Student[$j][0];
+              $swapScore = $Student[$j][1];
+              $Student[$j][0] = $Student[$j+1][0];
+              $Student[$j][1] = $Student[$j+1][1];
+              $Student[$j+1][0] = $swapName;
+              $Student[$j+1][1] = $swapScore;
+            }
+          }
+        }
+
+        for ($i=0; $i < sizeof($Student); $i++) { 
+          echo '姓名:' . $Student[$i][0] . ' 成績:' . $Student[$i][1] . '<br>';
+        }
+
         ?>
 
     </body>
