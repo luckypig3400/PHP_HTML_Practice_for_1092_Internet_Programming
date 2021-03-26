@@ -66,5 +66,6 @@
     }
 
     if ($createTable) echo '</table>';
+    else echo '<b><i>查無資料!!!</i></b>';
 
 ?>
