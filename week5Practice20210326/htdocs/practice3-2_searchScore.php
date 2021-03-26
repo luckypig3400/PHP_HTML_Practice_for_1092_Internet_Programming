@@ -35,5 +35,31 @@
 					array("王大毛", "412345678", 88, 95, 85),
 					array("林大毛", "440000005", 79, 82, 82));
     
-    echo sizeof($Score);
+    //echo sizeof($Score);
+
+    $kw = isset($_GET['Keyword']) ? $_GET['Keyword'] : "Error No Parameter sent.";
+    $createTable = false;
+    for($i=0; $i < sizeof($Score); $i++){//逐列掃描陣列
+        //echo sizeof($Score[$i]) . "<br>";
+        for($j=0; $j < sizeof($Score[$i]); $j++){//掃描該列的每個元素
+            if(strstr($Score[$i][$j], $kw)){
+                
+                if($createTable == false){
+                    echo "<table width=60% border=6px><tr><th>學生姓名</th><th>學生學號
+                    </th><th>國文成績</th><th>英文成績</th><th>數學成績</th></tr>";
+                    $createTable = true;
+                }
+
+                if($j == 0)
+                    echo "<tr><td>" . $Score[$i][$j] . "</td>";//第一欄
+                else if($j == sizeof($Score[$i]) - 1)
+                    echo "<td>" . $Score[$i][$j] . "</td></tr>";//最末欄
+                else
+                    echo "<td>" . $Score[$i][$j] . "</td>";
+            }
+        }
+    }
+
+    if($createTable) echo '</table>';
+
 ?>
