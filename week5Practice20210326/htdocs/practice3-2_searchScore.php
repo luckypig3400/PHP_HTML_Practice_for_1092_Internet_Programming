@@ -45,22 +45,23 @@
     $createTable = false;
     for ($i = 0; $i < sizeof($Score); $i++) { //逐列掃描陣列
         //echo sizeof($Score[$i]) . "<br>";
-        for ($j = 0; $j < sizeof($Score[$i]); $j++) { //掃描該列的每個元素
-            if (strstr($Score[$i][$j], $kw)) {
-
-                if ($createTable == false) {
-                    echo "<table width=60% border=6px align=\"center\"><tr><th>學生姓名</th><th>學生學號
-                    </th><th>國文成績</th><th>英文成績</th><th>數學成績</th></tr>";
-                    $createTable = true;
-                }
-
+        
+        if (strstr($Score[$i][0], $kw) || strstr($Score[$i][1], $kw)) {
+        //查詢該列儲存姓名及學號的欄位是否包含關鍵字
+            if ($createTable == false) {//有找到資料才建立表格
+                echo "<table width=60% border=6px align=\"center\"><tr><th>學生姓名</th><th>學生學號
+                </th><th>國文成績</th><th>英文成績</th><th>數學成績</th></tr>";
+                $createTable = true;
+            }
+            
+            for ($j = 0; $j < sizeof($Score[$i]); $j++) { //儲存該列的每個元素
                 if ($j == 0)
                     echo "<tr><td>" . $Score[$i][$j] . "</td>"; //第一欄
                 else if ($j == sizeof($Score[$i]) - 1)
                     echo "<td>" . $Score[$i][$j] . "</td></tr>"; //最末欄
                 else
                     echo "<td>" . $Score[$i][$j] . "</td>";
-            }
+           }
         }
     }
 
