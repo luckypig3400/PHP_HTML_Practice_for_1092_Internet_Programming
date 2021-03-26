@@ -20,6 +20,11 @@
 			2. 用亂數抓取10張圖中的其中一張圖出來顯示
 	  		3. 以上HTML均需置中
 		*/
+			date_default_timezone_set('Asia/Taipei');
+			echo date("Y/m/d H:i:s");
+
+			echo "<br><img src=\"" . rand(1,10) . ".jpg\" width=\"30%\">";
+
 		?>
 
     </body>
