@@ -46,7 +46,7 @@
     for ($i = 0; $i < sizeof($Score); $i++) { //逐列掃描陣列
         //echo sizeof($Score[$i]) . "<br>";
         
-        if (strstr($Score[$i][0], $kw) || strstr($Score[$i][1], $kw)) {
+        if ( (strstr($Score[$i][0], $kw) || strstr($Score[$i][1], $kw)) && $kw != '') {
         //查詢該列儲存姓名及學號的欄位是否包含關鍵字
             if ($createTable == false) {//有找到資料才建立表格
                 echo "<table width=60% border=6px align=\"center\"><tr><th>學生姓名</th><th>學生學號
