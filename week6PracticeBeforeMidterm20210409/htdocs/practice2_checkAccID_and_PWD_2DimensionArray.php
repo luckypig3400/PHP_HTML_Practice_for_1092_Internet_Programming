@@ -4,12 +4,6 @@
 1. 帳號不分大小寫，而密碼則需符合大小寫。 [提示：可用strcmp()與strcasecmp()，
 亦可用課本5-3的strtoupper()或strtolower()進行處理。]
 2. 需有中斷(Break)判斷，資料比對符合時即中斷，不能一直搜尋到最後。
-
-1個二維陣列
-$UserPass = array(array("derek","123456"),array("rolla","abcdeef"), 
-array("kevin","123abc"),array("eve","abc123"), array("john","abcdefgh"),
-array("crystal","12345678"),array("peter","abcd1234"),array("mary","1234abcd"));
-想想兩種陣列有何不同，要怎麼寫？
 */
 
 <!DOCTYPE html>
@@ -19,11 +13,11 @@ array("crystal","12345678"),array("peter","abcd1234"),array("mary","1234abcd"));
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>檢查帳號密碼(1維陣列)</title>
+        <title>檢查帳號密碼(2維陣列)</title>
     </head>
 
     <body align="center">
-        <h1>檢查帳號密碼(1維陣列)</h1>
+        <h1>檢查帳號密碼(2維陣列)</h1>
 
         <h3>請嘗試登入(帳號不分大小寫，密碼須完全符合)</h3>
 
@@ -36,9 +30,11 @@ array("crystal","12345678"),array("peter","abcd1234"),array("mary","1234abcd"));
         <h3>登入驗證結果如下</h3>
 
         <?php
-        //2個一維陣列
-        $UserDB = array("derek", "rolla", "kevin", "eve", "john","crystal", "peter", "mary");
-        $PassDB = array("123456", "abcdeef", "123abc","abc123", "abcdefgh", "12345678", "abcd1234","1234abcd");
+        //1個二維陣列
+        $UserPass = array(array("derek","123456"),array("rolla","abcdeef"), 
+        array("kevin","123abc"),array("eve","abc123"), array("john","abcdefgh"),
+        array("crystal","12345678"),array("peter","abcd1234"),array("mary","1234abcd"));
+        //想想兩種陣列有何不同，要怎麼寫？
         ?>
 
     </body>
