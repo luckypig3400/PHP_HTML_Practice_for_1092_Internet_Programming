@@ -1,11 +1,3 @@
-/*
-讓使用者輸入的帳號跟密碼，然後與$UserDB和$PassDB內之資料均符合時，顯示「登入成功」；
-當帳號正確而密碼錯誤時，顯示「密碼錯誤」；若無此帳號，則顯示「帳號或密碼輸入錯誤」。
-1. 帳號不分大小寫，而密碼則需符合大小寫。 [提示：可用strcmp()與strcasecmp()，
-亦可用課本5-3的strtoupper()或strtolower()進行處理。]
-2. 需有中斷(Break)判斷，資料比對符合時即中斷，不能一直搜尋到最後。
-*/
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,11 +22,38 @@
         <h3>登入驗證結果如下</h3>
 
         <?php
+        /*
+        讓使用者輸入的帳號跟密碼，然後與$UserDB和$PassDB內之資料均符合時，顯示「登入成功」；
+        當帳號正確而密碼錯誤時，顯示「密碼錯誤」；若無此帳號，則顯示「帳號或密碼輸入錯誤」。
+        1. 帳號不分大小寫，而密碼則需符合大小寫。 [提示：可用strcmp()與strcasecmp()，
+        亦可用課本5-3的strtoupper()或strtolower()進行處理。]
+        2. 需有中斷(Break)判斷，資料比對符合時即中斷，不能一直搜尋到最後。
+        */
         //1個二維陣列
         $UserPass = array(array("derek","123456"),array("rolla","abcdeef"), 
         array("kevin","123abc"),array("eve","abc123"), array("john","abcdefgh"),
         array("crystal","12345678"),array("peter","abcd1234"),array("mary","1234abcd"));
         //想想兩種陣列有何不同，要怎麼寫？
+
+        if(isset($_POST['account']) && isset($_POST['pwd'])){
+            $foundAccount = false;
+            for($i=0; $i<sizeof($UserDB) ;$i++){
+                if(strcasecmp($_POST['account'],$UserDB[$i]) == 0){
+                    if(strcmp($_POST['pwd'],$PassDB[$i]) == 0)
+                        echo "帳號密碼<b>均正確!</b>ヾ(≧▽≦*)o";
+                    else
+                        echo "<b>密碼錯誤</b>＞︿＜";
+                    $foundAccount = true;
+                }
+            }
+
+            if(!$foundAccount)
+                echo "<b>沒有找到此帳號</b>請檢查後再嘗試(。>︿<)_θ";
+
+        }else{
+            echo "帳號和密碼<b>都需要輸入喔!</b>";
+        }
+
         ?>
 
     </body>
