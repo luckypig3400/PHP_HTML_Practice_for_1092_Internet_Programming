@@ -37,9 +37,10 @@
 
         if(isset($_POST['account']) && isset($_POST['pwd'])){
             $foundAccount = false;
-            for($i=0; $i<sizeof($UserDB) ;$i++){
-                if(strcasecmp($_POST['account'],$UserDB[$i]) == 0){
-                    if(strcmp($_POST['pwd'],$PassDB[$i]) == 0)
+            //echo sizeof($UserPass);
+            for($i=0; $i<sizeof($UserPass) ;$i++){
+                if(strcasecmp($_POST['account'],$UserPass[$i][0]) == 0){
+                    if(strcmp($_POST['pwd'],$UserPass[$i][1]) == 0)
                         echo "帳號密碼<b>均正確!</b>ヾ(≧▽≦*)o";
                     else
                         echo "<b>密碼錯誤</b>＞︿＜";
