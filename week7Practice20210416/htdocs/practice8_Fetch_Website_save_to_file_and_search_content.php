@@ -11,6 +11,17 @@ if (isset($_GET["Keyword"]))
     $Keyword = $_GET["Keyword"];
 else
     $Keyword = "";
+
+for ($i = 1; $i <= sizeof($URLLink); $i++) {
+    $fileNameToSave = $i . ".html";
+    $htmlFile = fopen($fileNameToSave, "w+");
+
+    //https://stackoverflow.com/questions/819182/how-do-i-get-the-html-code-of-a-web-page-in-php
+    $htmlStrings = file_get_contents($URLLink[$i]);
+
+    fwrite($htmlFile, $htmlStrings);
+    fclose($htmlFile);
+}
 ?>
 
 <html>
@@ -22,7 +33,7 @@ else
     <title>Practice8 抓取網頁保存成HTML檔並搜尋內文</title>
 </head>
 
-<body>
+<body align="center">
     <h1>離線網頁內文檢索系統(簡易版)</h1>
     <form action="" method="GET">
         關鍵字：
