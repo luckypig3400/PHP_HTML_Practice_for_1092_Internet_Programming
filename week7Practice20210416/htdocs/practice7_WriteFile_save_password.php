@@ -30,7 +30,24 @@ if ((isset($_POST["username"])) && (isset($_POST["password"])))    // 用isset()
     // 接收使用者所傳送之帳號與密碼
     $username = $_POST["username"];
     $password = $_POST["password"];
+} else {
+    $username = "";
+    $password = "";
 }
+
+if ($username != "" && $password != "") { //傳入值不為空，寫入檔案
+    $file = fopen("password.dat", "a+") or die("無法開啟檔案");
+    $textToWrite = $username . ";" . $password . "\n";
+    fwrite($file, $textToWrite);
+    fclose($file);
+}
+
+$file = fopen("password.dat", "r");
+echo "<h3>以下為已儲存的密碼紀錄</h3>";
+while (!feof($file)){
+    echo fgets($file) . "<br>";
+}
+
 ?>
 
 </html>
