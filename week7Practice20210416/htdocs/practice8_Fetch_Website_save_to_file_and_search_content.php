@@ -46,7 +46,8 @@ for ($i = 0; $i < sizeof($URLLink); $i++) {
         $foundCount = 0;
 
         for ($i = 0; $i < sizeof($URLLink); $i++) {
-            $file = fopen("$i.html", "r");
+            $filePath = $i + 1 . ".html";
+            $file = fopen($filePath, "r");
 
             while (!feof($file)) {
                 $currentLineString = fgets($file);
@@ -56,7 +57,8 @@ for ($i = 0; $i < sizeof($URLLink); $i++) {
                     if ($foundCount == 0)
                         echo "<h3>搜索結果如下</h3>";
 
-                    echo "<a href=\"$i.html\">在檔案$i.html中找到=>點我查看網頁完整內容<=</a>";
+                    echo "<a href=\"" . $filePath . "\">在檔案"
+                        . $filePath . "中找到=>點我查看網頁完整內容<=</a>";
                     echo $currentLineString;
                     $foundCount += 1;
                     break; //found Keyword in current file, break to search in other files
@@ -64,7 +66,7 @@ for ($i = 0; $i < sizeof($URLLink); $i++) {
             }
         }
 
-        if ($founCount == 0)
+        if ($foundCount == 0)
             echo "<h3>很抱歉!沒有找到相關內容，請嘗試其他關鍵字</h3>";
     } else {
         echo "<h3>請輸入要查詢的字串喔!</h3>";
