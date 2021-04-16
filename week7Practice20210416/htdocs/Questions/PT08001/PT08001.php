@@ -5,7 +5,7 @@
 */
 
 	// 5個新聞的連結($URLLink[0] ~ $URLLink[4])
-	$URLLink = array("https://www.nownews.com/cat/global/", "https://www.nownews.com/cat/sport/", "https://www.nownews.com/cat/society/", "https://www.nownews.com/cat/politics/", "https://www.nownews.com/cat/finance/");
+	$URLLink = array("https://www.nownews.com/cat/global/", "https://www.nownews.com/cat/sport/", "https://www.nownews.com/cat/society/", "https://www.nownews.com/cat/column/", "https://www.nownews.com/cat/finance/");
 
 	if (isset($_GET["Keyword"]))
 		$Keyword = $_GET["Keyword"];
