@@ -7,7 +7,12 @@
 $filePath = "Questions\\PT05001\\board.txt";
 $file1 = fopen($filePath, "r") or die("Unable to open file!");
 // https://www.w3schools.com/php/php_file_open.asp
-echo fread($file1 , filesize($filePath));
+
+while(! feof($file1)){
+    echo fgets($file1) . "<br>";
+    //若使用fread()一次讀取全文，會忽略文件內的換行
+    //需用fgets()逐行讀取再印出，並要自行補上換行符號
+}
 
 fclose($file1);
 ?>
