@@ -50,7 +50,9 @@
         fclose($file);
     }
 
-    if($foundCount == 0)
+    if($Keyword == "")
+        echo "<h3>請輸入要查詢的關鍵字喔</h3>";
+    else if($foundCount == 0)
         echo "<h3>查無結果</h3>";
 
     ?>
