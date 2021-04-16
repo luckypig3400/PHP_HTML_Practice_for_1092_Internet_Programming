@@ -12,8 +12,8 @@ if (isset($_GET["Keyword"]))
 else
     $Keyword = "";
 
-for ($i = 1; $i <= sizeof($URLLink); $i++) {
-    $fileNameToSave = $i . ".html";
+for ($i = 0; $i < sizeof($URLLink); $i++) {
+    $fileNameToSave = $i+1 . ".html";
     $htmlFile = fopen($fileNameToSave, "w+");
 
     //https://stackoverflow.com/questions/819182/how-do-i-get-the-html-code-of-a-web-page-in-php
