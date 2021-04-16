@@ -52,14 +52,16 @@ for ($i = 0; $i < sizeof($URLLink); $i++) {
             while (!feof($file)) {
                 $currentLineString = fgets($file);
 
-                if (stristr($currentLineString, $Keyword)) {
+                if (strstr($currentLineString, $Keyword)) {
 
                     if ($foundCount == 0)
                         echo "<h3>搜索結果如下</h3>";
 
-                    echo "<a href=\"" . $filePath . "\">在檔案"
-                        . $filePath . "中找到=>點我查看網頁完整內容<=</a>";
+                    echo "<h4><a href=\"" . $filePath . "\">" . $filePath . "</a></h4><br>";
+                    echo "<table align=\"center\" width=\"66%\" border=\"6px\"><tr><th>於"
+                        . $filePath . "中搜索到的內容如下</th></tr><tr><td>";
                     echo $currentLineString;
+                    echo "</td></tr></table>";
                     $foundCount += 1;
                     break; //found Keyword in current file, break to search in other files
                 }
