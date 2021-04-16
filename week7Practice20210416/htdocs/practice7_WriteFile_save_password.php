@@ -8,7 +8,8 @@
     <title>Practice 7 寫入檔案</title>
 </head>
 
-<body>
+<body align="center">
+    <h1>簡易帳號密碼管理程式(寫入檔案保存)</h1>
     <form action="" method="post">
         帳號 ：<input type="text" name="username" /><br />
         密碼 ：<input type="password" name="password" /><br />
@@ -40,12 +41,14 @@ if ($username != "" && $password != "") { //傳入值不為空，寫入檔案
     $textToWrite = $username . ";" . $password . "\n";
     fwrite($file, $textToWrite);
     fclose($file);
-}
 
-$file = fopen("password.dat", "r");
-echo "<h3>以下為已儲存的密碼紀錄</h3>";
-while (!feof($file)){
-    echo fgets($file) . "<br>";
+    $file = fopen("password.dat", "r");
+    echo "<h3>以下為已儲存的密碼紀錄</h3>";
+    while (!feof($file)) {
+        echo fgets($file) . "<br>";
+    }
+} else {
+    echo "<b><u>請先輸入帳號與密碼再送出!</u></b><br>(兩個都要輸入喔(＠_＠;))";
 }
 
 ?>
