@@ -36,7 +36,8 @@
         $currentReadLineString = "";
         while(!feof($file)){//逐行讀取該檔案直到檔案結尾
             $currentReadLineString = fgets($file);
-            if(strcasecmp($currentReadLineString, $Keyword) == 0){
+            if(stristr($currentReadLineString, $Keyword) && $Keyword != ""){
+                //strstr會區分大小寫 所以使用stristr。並且不搜尋空字串
                 if($foundCount == 0)
                     echo "<h3>搜尋結果如下</h3>";
                 echo "<a href=$filePath>$i.txt</a><br>";
