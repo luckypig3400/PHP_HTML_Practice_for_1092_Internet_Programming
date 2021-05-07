@@ -12,10 +12,10 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 資料庫: `DB001`
+-- 資料庫: `LanguageDB`
 --
-CREATE DATABASE `DB001` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `DB001`;
+CREATE DATABASE `LanguageDB` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `LanguageDB`;
 
 -- --------------------------------------------------------
 
