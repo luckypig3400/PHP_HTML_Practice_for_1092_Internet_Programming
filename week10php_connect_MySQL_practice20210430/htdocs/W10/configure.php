@@ -1,14 +1,14 @@
 <?php
-	// ¦Û­qÅÜ¼Æ(Variable)
-	$hostname = "localhost";		/* MySQLªº¥D¾÷¦WºÙ */
-	$username = "MyUsername";		/* MySQLªº¨Ï¥ÎªÌ¦WºÙ */
-	$password = "MyPassword";		/* MySQLªº¨Ï¥ÎªÌ±K½X */
-	$database = "DBName";			/*¸ê®Æ®w¦WºÙ*/
+	// è‡ªè¨‚è®Šæ•¸(Variable)
+	$hostname = "localhost";		/* MySQLçš„ä¸»æ©Ÿåç¨± */
+	$username = "db001user";		/* MySQLçš„ä½¿ç”¨è€…åç¨± */
+	$password = "1234";		/* MySQLçš„ä½¿ç”¨è€…å¯†ç¢¼ */
+	$database = "db001";			/*è³‡æ–™åº«åç¨±*/
 
-	//	mysqli_connect³s½u°Ê§@¥i¦b¦¹ÀÉ®×¤¤§¹¦¨
+	//	mysqli_connecté€£ç·šå‹•ä½œå¯åœ¨æ­¤æª”æ¡ˆä¸­å®Œæˆ
 	//	$link = mysqli_connect($hostname, $username, $password, $database) OR die("Error: Unable to connect to MySQL.");
 
-	// ¥ç¥i¦Û¦æ©w¸q±`¼Æ(Constant)¡A½Ð°Ñ¦Ò http://php.net/manual/en/function.define.php
+	// äº¦å¯è‡ªè¡Œå®šç¾©å¸¸æ•¸(Constant)ï¼Œè«‹åƒè€ƒ http://php.net/manual/en/function.define.php
 	define('HTTP_SERVER', 'http://www.ntunhs.edu.tw/');
 
 ?>
