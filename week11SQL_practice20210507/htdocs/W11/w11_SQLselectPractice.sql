@@ -12,3 +12,14 @@ WHERE P.Country = 198
 SELECT P.Nickname, P.Live1
 FROM personal AS P
 WHERE P.Live1 LIKE '198%'
+
+--Q4
+SELECT P.Nickname, D.C_B5
+FROM db_localcode AS D, personal AS P
+WHERE D.C_ID = P.Live1
+
+--Q5
+SELECT P.Nickname, D.C_B5
+FROM db_localcode AS D, personal AS P
+WHERE D.C_ID = P.Live1
+GROUP BY P.Nickname
