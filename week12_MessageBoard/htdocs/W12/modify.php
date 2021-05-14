@@ -16,7 +16,7 @@
 
     $link = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';charset=utf8', $username, $password);
 
-    if (isset($_POST['msgID']) && !isset($_POST['msgTitile'])) { //從主頁點進來的
+    if (isset($_POST['msgID']) && !isset($_POST['msgTitle'])) { //從主頁點進來的
         $id = $_POST['msgID'];
 
         $queryDataCommand = "SELECT * FROM `note` WHERE `note`.`ID`= " . $id . ";";
