@@ -8,12 +8,15 @@ include("configure.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP Show SQL Select</title>
+    <title>北護簡易PHP留言板</title>
 </head>
 
-<body>
-    <h1>PHP Show SQL Select</h1>
+<body align="center">
+    <h1>北護簡易PHP留言板</h1>
 
+    <h3><a href="./addnote.html">我要留言~</a></h3>
+
+    <h3>留言板內容</h3>
     <table align="center" border="3">
         <tr align="center" bgcolor="#FFAACC">
             <td width="100">發佈日期</td>
@@ -40,7 +43,7 @@ include("configure.php");
             // 上行的 nl2br() 把換行符號\r\n轉成HTML的<br>
             //https://www.php.net/manual/en/function.nl2br.php
             echo "<td><form action='./modify.php' method='POST'><input type='text' name='msgID' hidden value=" .
-            $row["ID"] . "><input type='submit' value='修改'></form></td>";
+                $row["ID"] . "><input type='submit' value='修改'></form></td>";
             echo "<td><form action='./delete.php' method='POST'><input type='text' name='msgID' hidden value=" .
                 $row["ID"] . "><input type='submit' value='刪除'></form></td></tr>";
         }
