@@ -28,18 +28,18 @@
             $titleToModify = $row['Title'];
             $contentToModify = $row['Description'];
         }
+
+        echo "<form action='./modify.php' method='POST'>標題:<input type='text' name='msgTitle' value=" . $titleToModify .
+            "><br><br><br>內容:<textarea name='msgContent' cols='30' rows='15'>" . $contentToModify .
+            "</textarea><br><input type='submit' value='確定修改'></form>";
         
     } elseif (isset($_POST['msgTitle']) && isset($_POST['msgContent'])) { //從本頁面修改後送出
-
+        //todo:write modified text to SQL
     } else {
         echo "Error: No content sent";
     }
     ?>
-    <form action='./modify.php' method='POST'>
-        標題:<input type='text' name='msgTitle' value=''><br><br><br>
-        內容:<textarea name='msgContent' cols='30' rows='15'></textarea>
-        <br><input type='submit' value='確定修改'>
-    </form>
+
 </body>
 
 </html>
