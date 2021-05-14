@@ -31,7 +31,7 @@
 
         echo "<form action='./modify.php' method='POST'>標題:<input type='text' name='msgTitle' value=" . $titleToModify .
             "><br><br><br>內容:<textarea name='msgContent' cols='30' rows='15'>" . $contentToModify .
-            "</textarea><br><input type=text name='msgID' value=" . $id . "><input type='submit' value='確定修改'></form>";
+            "</textarea><br><input type=text name='msgID' hidden value=" . $id . "><input type='submit' value='確定修改'></form>";
         //要記得再度傳遞ID才能正確找到要些改的資料行
 
     } elseif (isset($_POST['msgID']) && isset($_POST['msgTitle']) && isset($_POST['msgContent'])) { //從本頁面修改後送出
