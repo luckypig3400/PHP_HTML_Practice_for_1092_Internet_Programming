@@ -12,10 +12,29 @@
     <h1>修改留言</h1>
 
     <?php
-    if (isset($_POST['msgID']) && !isset($_POST['msgTitile'])) {
+    include "configure.php";
+
+    $link = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';charset=utf8', $username, $password);
+
+    if (isset($_POST['msgID']) && !isset($_POST['msgTitile'])) { //從主頁點進來的
+        $id = $_POST['msgID'];
+
+        $queryDataCommand = "SELECT * FROM `note` WHERE `note`.`ID`= " . $id . ";";
+        $result = $link->query($queryDataCommand);
+
+        $titleToModify = "";
+        $contentToModify = "";
+        foreach ($result as $row) {
+            $titleToModify = $row['Title'];
+            $contentToModify = $row['Description'];
+        }
+        
+    } elseif (isset($_POST['msgTitle']) && isset($_POST['msgContent'])) { //從本頁面修改後送出
+
+    } else {
+        echo "Error: No content sent";
     }
     ?>
-
     <form action='./modify.php' method='POST'>
         標題:<input type='text' name='msgTitle' value=''><br><br><br>
         內容:<textarea name='msgContent' cols='30' rows='15'></textarea>
