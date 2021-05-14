@@ -33,6 +33,8 @@ include("configure.php");
             echo "<tr align=center bgcolor=\"#FFEECC\"><td>" . $row["Time"] . "</td>";
             echo "<td valign=\"top\" align=\"left\"><H2>" . $row["Title"] . "</H2></td>";
             echo "<td>" . nl2br($row["Description"]) . "</td></tr>";
+            // 上行的 nl2br() 把換行符號\r\n轉成HTML的<br>
+            //https://www.php.net/manual/en/function.nl2br.php
         }
 
         ?>
