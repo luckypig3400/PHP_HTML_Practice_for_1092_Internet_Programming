@@ -24,7 +24,8 @@ include("configure.php");
         <?php
         $link = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';charset=utf8', $username, $password);
 
-        $query = "SELECT DATE_FORMAT(`note`.`Time`, '%Y-%m-%d') AS Time, `note`.`Title`, `note`.`Description` FROM `note` WHERE 1=1 ORDER BY `note`.`Time` DESC LIMIT 0,30;";
+        $query = "SELECT DATE_FORMAT(`note`.`Time`, '%Y-%m-%d %h:%i:%s') AS Time, `note`.`Title`, `note`.`Description` FROM `note` WHERE 1=1 ORDER BY `note`.`Time` DESC LIMIT 0,30;";
+        //time format:https://www.fooish.com/sql/mysql-date_format-function.html
 
         $result = $link->query($query);
 
