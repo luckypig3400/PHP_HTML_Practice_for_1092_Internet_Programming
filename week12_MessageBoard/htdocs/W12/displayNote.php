@@ -39,7 +39,8 @@ include("configure.php");
             echo "<td>" . nl2br($row["Description"]) . "</td>";
             // 上行的 nl2br() 把換行符號\r\n轉成HTML的<br>
             //https://www.php.net/manual/en/function.nl2br.php
-            echo "<td>修改 晚點塞入form</td>";
+            echo "<td><form action='./modify.php' method='POST'><input type='text' name='msgID' hidden value=" .
+            $row["ID"] . "><input type='submit' value='修改'></form></td>";
             echo "<td><form action='./delete.php' method='POST'><input type='text' name='msgID' hidden value=" .
                 $row["ID"] . "><input type='submit' value='刪除'></form></td></tr>";
         }
