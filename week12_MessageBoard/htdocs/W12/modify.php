@@ -35,7 +35,16 @@
         //要記得再度傳遞ID才能正確找到要些改的資料行
 
     } elseif (isset($_POST['msgID']) && isset($_POST['msgTitle']) && isset($_POST['msgContent'])) { //從本頁面修改後送出
-        //todo:write modified text to SQL
+        $id = $_POST['msgID'];
+        $title = $_POST['msgTitle'];
+        $content = $_POST['msgContent'];
+
+        $sqlUpdateCommand = "UPDATE `note` SET `Title` = '" . $title . "', `Description` = '" . $content .
+            "', `Time` = current_timestamp() WHERE `note`.`ID` = " . $id . ";";
+
+        $updated = $link->exec($sqlUpdateCommand);
+
+        header("Location: displayNote.php");
     } else {
         echo "Error: No content sent";
     }
