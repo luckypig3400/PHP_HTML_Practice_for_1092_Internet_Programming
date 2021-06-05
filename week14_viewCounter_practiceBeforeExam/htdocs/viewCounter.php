@@ -43,11 +43,15 @@
             include "config.php";
             $link = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';charset=utf8', $username, $password);
 
-            $sqlCreateTableIfNotExists = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithoutip` ( `viewCount` INT NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
+            $sqlCreateTableIfNotExists = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithoutip` ( `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
             //https://www.mysqltutorial.org/mysql-create-table/
-
             $result = $link->query($sqlCreateTableIfNotExists);
 
+            $insertCommand = 'INSERT INTO `viewlogwithoutip` (`viewTime`) VALUES (current_timestamp());';
+            $result = $link->query($insertCommand);//在顯示之前增加一筆紀錄
+
+            $selectCommand = 'SELECT COUNT(viewTime) FROM `viewlogwithoutip`';
+            $result = $link->query($selectCommand);
             //print_r($result);
             //https://stackoverflow.com/questions/2537767/how-to-convert-a-php-object-to-a-string
 
