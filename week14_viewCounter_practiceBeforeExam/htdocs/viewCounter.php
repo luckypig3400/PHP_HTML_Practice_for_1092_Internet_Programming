@@ -41,7 +41,25 @@
             總瀏覽次數(SQL紀錄版不包含IP):
             <?php
             include "config.php";
+            $link = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';charset=utf8', $username, $password);
 
+            $sqlCheckTable = 'SELECT * FROM information_schema.tables WHERE table_schema ="' . $database . '" AND table_name = "viewlogwithoutip" LIMIT 1;';
+            //https://stackoverflow.com/questions/8829102/check-if-table-exists-without-using-select-from
+
+            $result = $link->query($sqlCheckTable);
+
+            print_r($result);
+            //https://stackoverflow.com/questions/2537767/how-to-convert-a-php-object-to-a-string
+
+            foreach($result as $row){
+                echo $row;
+            }
+            
+            if (empty($result)) {
+                echo "QAQ回傳的查詢結果不存在，尚未建立該資料表";
+
+                $createTableCommand = 'CREATE TABLE `webviewlog_user`.`viewlogwithoutip` ( `viewCount` INT NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
+            }
             ?>
             次
         </p>
