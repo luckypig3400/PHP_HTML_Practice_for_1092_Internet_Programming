@@ -56,9 +56,8 @@
             //https://stackoverflow.com/questions/2537767/how-to-convert-a-php-object-to-a-string
 
             foreach ($result as $row) {
-                foreach ($row as $element) {
-                    echo $element . " ";
-                }
+                echo $row["COUNT(viewTime)"];
+                //使用 欄位名稱 做為陣列索引
             }
 
             ?>
