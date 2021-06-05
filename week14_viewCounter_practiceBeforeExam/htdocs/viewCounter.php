@@ -15,8 +15,27 @@
         <p>
             總瀏覽次數:
             <?php
+            if (file_exists("viewCount.txt")) {
+                $file = fopen("viewCount.txt", "r");
+                $counter = fgets($file);
+                fclose($file);
+                unlink("viewCount.txt");
+
+                $counter = (int)$counter + 1;
+                echo $counter;
+
+                $newfile = fopen("viewCount.txt", "a+");
+                fputs($newfile, $counter);
+                fclose($newfile);
+            } else {
+                $file = fopen("viewCount.txt", "a+");
+                fputs($file, "1");
+                echo "1";
+                fclose($file);
+            }
 
             ?>
+            次
         </p>
     </div>
     <!--https://www.w3schools.com/howto/howto_css_fixed_footer.asp-->
