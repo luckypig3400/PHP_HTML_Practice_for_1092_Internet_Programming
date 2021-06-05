@@ -46,9 +46,9 @@
             $sqlCreateTableIfNotExists = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithoutip` ( `viewCount` INT NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
             //https://www.mysqltutorial.org/mysql-create-table/
 
-            $result = $link->query($sqlCheckTable);
+            $result = $link->query($sqlCreateTableIfNotExists);
 
-            print_r($result);
+            //print_r($result);
             //https://stackoverflow.com/questions/2537767/how-to-convert-a-php-object-to-a-string
 
             foreach ($result as $row) {
