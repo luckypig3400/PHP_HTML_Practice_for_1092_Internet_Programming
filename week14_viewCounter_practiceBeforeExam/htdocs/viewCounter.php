@@ -43,23 +43,20 @@
             include "config.php";
             $link = new PDO('mysql:host=' . $hostname . ';dbname=' . $database . ';charset=utf8', $username, $password);
 
-            $sqlCheckTable = 'SELECT * FROM information_schema.tables WHERE table_schema ="' . $database . '" AND table_name = "viewlogwithoutip" LIMIT 1;';
-            //https://stackoverflow.com/questions/8829102/check-if-table-exists-without-using-select-from
+            $sqlCreateTableIfNotExists = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithoutip` ( `viewCount` INT NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
+            //https://www.mysqltutorial.org/mysql-create-table/
 
             $result = $link->query($sqlCheckTable);
 
             print_r($result);
             //https://stackoverflow.com/questions/2537767/how-to-convert-a-php-object-to-a-string
 
-            foreach($result as $row){
-                echo $row;
+            foreach ($result as $row) {
+                foreach ($row as $element) {
+                    echo $element . " ";
+                }
             }
-            
-            if (empty($result)) {
-                echo "QAQ回傳的查詢結果不存在，尚未建立該資料表";
 
-                $createTableCommand = 'CREATE TABLE `webviewlog_user`.`viewlogwithoutip` ( `viewCount` INT NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
-            }
             ?>
             次
         </p>
