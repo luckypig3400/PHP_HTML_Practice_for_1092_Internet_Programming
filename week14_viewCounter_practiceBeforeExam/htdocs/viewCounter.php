@@ -13,7 +13,7 @@
 
     <div class="footer">
         <p>
-            總瀏覽次數:
+            總瀏覽次數(檔案紀錄簡易版):
             <?php
             if (file_exists("viewCount.txt")) {
                 $file = fopen("viewCount.txt", "r");
@@ -33,6 +33,14 @@
                 echo "1";
                 fclose($file);
             }
+
+            ?>
+            次
+        </p>
+        <p>
+            總瀏覽次數(SQL紀錄版不包含IP):
+            <?php
+            include "config.php";
 
             ?>
             次
