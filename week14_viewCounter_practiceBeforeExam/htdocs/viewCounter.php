@@ -66,7 +66,6 @@
         </p>
 
         <p>
-            總瀏覽次數(SQL紀錄版含IP):
             <?php
             include "config.php";
             $link = new PDO('mysql:host=' . $hostname . ";dbname=" . $database . ";charset=utf8", $username, $password);
@@ -87,11 +86,19 @@
                 $viewerIP . '" AND `viewTime` >= (NOW() - INTERVAL 3 HOUR)';
             //https://stackoverflow.com/questions/35955039/how-to-add-1-hour-to-currrent-timestamp-in-mysql-which-is-the-default-value/35955291
             //https://stackoverflow.com/questions/17198468/from-the-timestamp-in-sql-selecting-records-from-today-yesterday-this-week-t
+            $result = $link->query($SQLcheckIPvisitTime);
+            foreach ($result as $row) {
+                if ($row['COUNT(viewTime)'] == "0") {
+                    echo "您的IP位址最近3小內首次瀏覽本網頁，已更新瀏覽次數";
+                    //insert new visit data in SQL
+                } else {
+                    echo "您的IP位址最近3小內有訪問過本站，將不會更新瀏覽次數";
+                }
+            }
 
-            echo "<br>您的IP位置:" . $viewerIP;
+            echo "總瀏覽次數(SQL紀錄版含IP):" . "次<br>您的IP位置:" . $viewerIP;
 
             ?>
-            次
         </p>
     </div>
     <!--https://www.w3schools.com/howto/howto_css_fixed_footer.asp-->
