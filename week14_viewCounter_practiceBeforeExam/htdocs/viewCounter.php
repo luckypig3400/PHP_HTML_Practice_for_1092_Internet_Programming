@@ -71,7 +71,7 @@
             include "config.php";
             $link = new PDO('mysql:host=' . $hostname . ";dbname=" . $database . ";charset=utf8", $username, $password);
 
-            $sqlCreateTableWithIP = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithip` ( `IP` VARCHAR(30) NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
+            $sqlCreateTableWithIP = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithip` ( `IP` VARCHAR(66) NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
             $result = $link->query($sqlCreateTableWithIP);
 
             if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -83,7 +83,15 @@
             }
             //https://devco.re/blog/2014/06/19/client-ip-detection/
 
+            $SQLcheckIPvisitTime = 'SELECT COUNT(viewTime) FROM `viewlogwithip` WHERE IP ="' .
+                $viewerIP . '" AND `viewTime` >= (NOW() - INTERVAL 3 HOUR)';
+            //https://stackoverflow.com/questions/35955039/how-to-add-1-hour-to-currrent-timestamp-in-mysql-which-is-the-default-value/35955291
+            //https://stackoverflow.com/questions/17198468/from-the-timestamp-in-sql-selecting-records-from-today-yesterday-this-week-t
+
+            echo "<br>您的IP位置:" . $viewerIP;
+
             ?>
+            次
         </p>
     </div>
     <!--https://www.w3schools.com/howto/howto_css_fixed_footer.asp-->
