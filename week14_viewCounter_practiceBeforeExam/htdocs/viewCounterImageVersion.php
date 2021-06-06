@@ -9,6 +9,12 @@
 </head>
 
 <body align="center">
+    <div class="topnav">
+        <!--https://www.w3schools.com/howto/howto_js_topnav.asp-->
+        <a class="active" href="#">Home</a>
+        <a href="#">Null</a>
+    </div>
+
     <h1>歡迎光臨本站~ヾ(≧▽≦*)o</h1>
 
     <div class="footer">
@@ -141,6 +147,39 @@
         background-color: black;
         color: white;
         text-align: center;
+    }
+    
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Add a black background color to the top navigation */
+    .topnav {
+        background-color: #333;
+        overflow: hidden;
+    }
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    /* Change the color of links on hover */
+    .topnav a:hover {
+        background-color: #000;
+        color: white;
+    }
+
+    /* Add a color to the active/current link */
+    .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
     }
 </style>
 
