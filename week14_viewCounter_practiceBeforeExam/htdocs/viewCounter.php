@@ -90,13 +90,22 @@
             foreach ($result as $row) {
                 if ($row['COUNT(viewTime)'] == "0") {
                     echo "您的IP位址最近3小內首次瀏覽本網頁，已更新瀏覽次數";
-                    //insert new visit data in SQL
+
+                    $insertViewLog = 'INSERT INTO `viewlogwithip` (`IP`, `viewTime`) VALUES ("'
+                        . $viewerIP . '", current_timestamp());';
+                    $result = $link->query($insertViewLog);
                 } else {
                     echo "您的IP位址最近3小內有訪問過本站，將不會更新瀏覽次數";
                 }
             }
 
-            echo "總瀏覽次數(SQL紀錄版含IP):" . "次<br>您的IP位置:" . $viewerIP;
+            $SQLselectIPviewCount = 'SELECT COUNT(viewTime) FROM `viewlogwithip`';
+            $result = $link->query($SQLselectIPviewCount);
+            foreach ($result as $row) {
+                $totalViewCountWithIP = $row['COUNT(viewTime)'];
+            }
+
+            echo "<br><h3>總瀏覽次數(SQL紀錄版含IP):" . $totalViewCountWithIP . "次</h3>您的IP位置:" . $viewerIP;
 
             ?>
         </p>
