@@ -37,6 +37,7 @@
             ?>
             次
         </p>
+
         <p>
             總瀏覽次數(SQL紀錄版不包含IP):
             <?php
@@ -48,7 +49,7 @@
             $result = $link->query($sqlCreateTableIfNotExists);
 
             $insertCommand = 'INSERT INTO `viewlogwithoutip` (`viewTime`) VALUES (current_timestamp());';
-            $result = $link->query($insertCommand);//在顯示之前增加一筆紀錄
+            $result = $link->query($insertCommand); //在顯示之前增加一筆紀錄
 
             $selectCommand = 'SELECT COUNT(viewTime) FROM `viewlogwithoutip`';
             $result = $link->query($selectCommand);
@@ -62,6 +63,20 @@
 
             ?>
             次
+        </p>
+
+        <p>
+            總瀏覽次數(SQL紀錄版含IP):
+            <?php
+            include "config.php";
+            $link = new PDO('mysql:host=' . $hostname . ";dbname=" . $database . ";charset=utf8", $username, $password);
+
+            $sqlCreateTableWithIP = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithip` ( `IP` VARCHAR(30) NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
+            $result = $link->query($sqlCreateTableWithIP);
+
+            
+            
+            ?>
         </p>
     </div>
     <!--https://www.w3schools.com/howto/howto_css_fixed_footer.asp-->
