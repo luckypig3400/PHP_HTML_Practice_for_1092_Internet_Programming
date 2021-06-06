@@ -13,6 +13,14 @@
         <!--https://www.w3schools.com/howto/howto_js_topnav.asp-->
         <a class="active" href="#">Home</a>
         <a href="#">Null</a>
+        <div class="topnav-right">
+            <!--https://www.w3schools.com/howto/howto_css_topnav_right.asp-->
+            <?php
+            echo "<a href=\"#\">現在時間:";
+            echo date("Y-m-d H:i:s");
+            echo "</a>";
+            ?>
+        </div>
     </div>
 
     <h1>歡迎光臨本站~ヾ(≧▽≦*)o</h1>
@@ -148,7 +156,7 @@
         color: white;
         text-align: center;
     }
-    
+
     body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
@@ -180,6 +188,10 @@
     .topnav a.active {
         background-color: #04AA6D;
         color: white;
+    }
+
+    .topnav-right {
+        float: right;
     }
 </style>
 
