@@ -65,8 +65,14 @@
             //https://stackoverflow.com/questions/2537767/how-to-convert-a-php-object-to-a-string
 
             foreach ($result as $row) {
-                echo $row["COUNT(viewTime)"];
+                //echo $row["COUNT(viewTime)"];
                 //使用 欄位名稱 做為陣列索引
+                $numStr = $row["COUNT(viewTime)"];
+                $numCharArray = str_split($numStr);
+
+                foreach ($numCharArray as $digit) {
+                    echo "<img src=\"digits/001/" . $digit . ".gif\">";
+                }
             }
 
             ?>
@@ -113,7 +119,12 @@
                 $totalViewCountWithIP = $row['COUNT(viewTime)'];
             }
 
-            echo "<br><h3>總瀏覽次數(SQL紀錄版含IP):" . $totalViewCountWithIP . "次</h3>您的IP位置:" . $viewerIP;
+            $tvcWithIPstr = str_split($totalViewCountWithIP);
+            echo "<br><h3>總瀏覽次數(SQL紀錄版含IP):";
+            foreach ($tvcWithIPstr as $digit) {
+                echo "<img src=\"digits/001/" . $digit . ".gif\">";
+            }
+            echo "次</h3>您的IP位置:" . $viewerIP;
 
             ?>
         </p>
