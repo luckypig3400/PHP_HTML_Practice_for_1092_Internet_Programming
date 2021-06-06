@@ -74,8 +74,15 @@
             $sqlCreateTableWithIP = 'CREATE TABLE IF NOT EXISTS `webviewlog_user`.`viewlogwithip` ( `IP` VARCHAR(30) NOT NULL , `viewTime` TIMESTAMP NOT NULL ) ENGINE = InnoDB;';
             $result = $link->query($sqlCreateTableWithIP);
 
-            
-            
+            if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                $viewerIP = $_SERVER['HTTP_CLIENT_IP'];
+            } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $viewerIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $viewerIP = $_SERVER['REMOTE_ADDR'];
+            }
+            //https://devco.re/blog/2014/06/19/client-ip-detection/
+
             ?>
         </p>
     </div>
