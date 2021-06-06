@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>網頁瀏覽計數器</title>
+    <title>網頁瀏覽計數器--圖片版</title>
 </head>
 
 <body align="center">
@@ -22,7 +22,15 @@
                 unlink("viewCount.txt");
 
                 $counter = (int)$counter + 1;
-                echo $counter;
+                //echo $counter;
+
+                $counterString = strval($counter);
+                //https://stackoverflow.com/questions/1035634/converting-an-integer-to-a-string-in-php
+                $counterCharArray = str_split($counterString);
+                //https://stackoverflow.com/questions/2768314/convert-a-string-into-an-array-of-characters/50448824
+                foreach ($counterCharArray as $digit) {
+                    echo "<img src=\"digits/001/" . $digit . ".gif\">";
+                }
 
                 $newfile = fopen("viewCount.txt", "a+");
                 fputs($newfile, $counter);
@@ -30,7 +38,7 @@
             } else {
                 $file = fopen("viewCount.txt", "a+");
                 fputs($file, "1");
-                echo "1";
+                echo "<img src=\"digits/001/1.gif\">";
                 fclose($file);
             }
 
