@@ -11,6 +11,9 @@
 <body align="center">
     <h1>現在時間</h1>
     <?php
+    date_default_timezone_set("Asia/Taipei");
+    //https://lamb-mei.com/138/php-%E6%99%82%E5%8D%80-timezone-%E8%A8%AD%E5%AE%9A/
+
     echo date("Y-m-d H:i:s") . "<br>";
 
     $timeStr = date("Y-m-d H:i:s");
