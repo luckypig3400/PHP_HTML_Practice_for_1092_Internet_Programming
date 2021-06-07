@@ -17,10 +17,11 @@
     $timeCharArray = str_split($timeStr);
 
     $dirs = array_filter(glob('digits/*'), 'is_dir');
-    print_r("digits內的資料夾數:" . sizeof($dirs) . "<br>");
-    print_r($dirs);
+    //print_r("digits內的資料夾數:" . sizeof($dirs) . "<br>");
+    //print_r($dirs);
     //https://stackoverflow.com/questions/2524151/php-get-all-subdirectories-of-a-given-directory
 
+    echo "<h3>預設造型時鐘:</h3>";
     foreach ($timeCharArray as $number) {
         switch ($number) {
             case '-':
@@ -34,6 +35,25 @@
                 break;
             default:
                 echo "<img src=\"digits/001/" . $number . ".gif\">";
+                break;
+        }
+    }
+
+    echo "<h3>隨機造型時鐘:</h3>";
+    $digitFolder = $dirs[rand(0, sizeof($dirs))];
+    foreach ($timeCharArray as $number) {
+        switch ($number) {
+            case '-':
+                echo "<img src=\"digits/001/d.gif\">";
+                break;
+            case ' ':
+                echo "<br>";
+                break;
+            case ':':
+                echo "<img src=\"digits/001/c.gif\">";
+                break;
+            default:
+                echo "<img src=\"" . $digitFolder . "/" . $number . ".gif\">";
                 break;
         }
     }
