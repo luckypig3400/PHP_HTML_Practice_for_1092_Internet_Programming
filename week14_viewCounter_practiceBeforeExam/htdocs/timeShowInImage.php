@@ -16,6 +16,11 @@
     $timeStr = date("Y-m-d H:i:s");
     $timeCharArray = str_split($timeStr);
 
+    $dirs = array_filter(glob('digits/*'), 'is_dir');
+    print_r("digits內的資料夾數:" . sizeof($dirs) . "<br>");
+    print_r($dirs);
+    //https://stackoverflow.com/questions/2524151/php-get-all-subdirectories-of-a-given-directory
+
     foreach ($timeCharArray as $number) {
         switch ($number) {
             case '-':
