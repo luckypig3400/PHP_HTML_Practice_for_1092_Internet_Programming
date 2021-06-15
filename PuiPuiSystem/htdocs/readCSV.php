@@ -10,6 +10,9 @@
 
 <body align="center">
     <h3>讀取本機csv範例</h3>
+
+    <button>使用格式範例檔</button>
+
     <?php
     //https://stackoverflow.com/questions/2805427/how-to-extract-data-from-csv-file-in-php
 
@@ -39,5 +42,7 @@
     }
     ?>
 </body>
+
+<script src="assets/js/readCSV.js"></script>
 
 </html>
