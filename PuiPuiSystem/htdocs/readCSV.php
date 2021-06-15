@@ -19,7 +19,7 @@
             $numOfColumns = count($data);
             //echo "<p> $numOfColumns fields in line $row : <br> </p>\n";
 
-            if ($row == 1) echo "<table border=\"3px\">"; //遇到第一列先建立table
+            if ($row == 1) echo "<div style=\"overflow-x:auto;\"><table border=\"3px\" align=\"center\">"; //遇到第一列先建立table
             echo "<tr>";
             for ($c = 0; $c < $numOfColumns; $c++) { //c 表示column
                 if ($row == 1) { //title row (columns name)
@@ -32,7 +32,9 @@
 
             $row++;
         }
-        echo "</table>";
+        echo "</table></div>";
+        //響應式表格:
+        //https://www.w3schools.com/howto/howto_css_table_responsive.asp
         fclose($handle);
     }
     ?>
