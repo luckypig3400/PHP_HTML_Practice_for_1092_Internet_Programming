@@ -17,12 +17,22 @@
     if (($handle = fopen("csv/exampleFormat.csv", "r")) !== false) {
         while (($data = fgetcsv($handle, 66666, ",")) !== false) {
             $numOfColumns = count($data);
-            echo "<p> $numOfColumns fields in line $row : <br> </p>\n";
-            $row++;
+            //echo "<p> $numOfColumns fields in line $row : <br> </p>\n";
+
+            if ($row == 1) echo "<table border=\"3px\">"; //遇到第一列先建立table
+            echo "<tr>";
             for ($c = 0; $c < $numOfColumns; $c++) { //c 表示column
-                echo $data[$c] . "<br> \n";
+                if ($row == 1) { //title row (columns name)
+                    echo "<th>" . $data[$c] . "</th>";
+                } else { //content rows (columns content)
+                    echo "<td>" . $data[$c] . "</td>";
+                }
             }
+            echo "</tr>";
+
+            $row++;
         }
+        echo "</table>";
         fclose($handle);
     }
     ?>
