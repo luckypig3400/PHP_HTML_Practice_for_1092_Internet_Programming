@@ -11,13 +11,15 @@
 <body align="center">
     <h3>讀取本機csv範例</h3>
     <?php
-    $row = 1;
+    //https://stackoverflow.com/questions/2805427/how-to-extract-data-from-csv-file-in-php
+
+    $row = 1; //第一列為標題
     if (($handle = fopen("csv/exampleFormat.csv", "r")) !== false) {
         while (($data = fgetcsv($handle, 66666, ",")) !== false) {
-            $num = count($data);
-            echo "<p> $num fields in line $row : <br> </p>\n";
+            $numOfColumns = count($data);
+            echo "<p> $numOfColumns fields in line $row : <br> </p>\n";
             $row++;
-            for ($c = 0; $c < $num; $c++) {
+            for ($c = 0; $c < $numOfColumns; $c++) { //c 表示column
                 echo $data[$c] . "<br> \n";
             }
         }
