@@ -11,13 +11,21 @@
 <body align="center">
     <h3>讀取本機csv範例</h3>
 
-    <button>使用格式範例檔</button>
+    <form action="" method="GET">
+        <input type="text" name="filePath" value="csv/exampleFormat.csv" hidden>
+        <input type="submit" value="使用格式範例檔">
+    </form>
+    <form action="" method="GET">
+        <input type="text" name="filePath" value="csv/201904.csv" hidden>
+        <input type="submit" value="使用醫資試題">
+    </form>
 
     <?php
+    isset($_GET['filePath']) ? $filePath = $_GET['filePath'] : $filePath = "csv/exampleFormat.csv";
     //https://stackoverflow.com/questions/2805427/how-to-extract-data-from-csv-file-in-php
 
     $row = 1; //第一列為標題
-    if (($handle = fopen("csv/exampleFormat.csv", "r")) !== false) {
+    if (($handle = fopen($filePath, "r")) !== false) {
         while (($data = fgetcsv($handle, 66666, ",")) !== false) {
             $numOfColumns = count($data);
             //echo "<p> $numOfColumns fields in line $row : <br> </p>\n";
