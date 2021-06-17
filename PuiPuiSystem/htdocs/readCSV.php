@@ -64,6 +64,15 @@
     $uploadOK = 1;
     $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
+    //Allow certain file formats
+    if ($fileType == "csv") {
+        $uploadOK = 1;
+    } else {
+        echo "Sorry, only CSV files are allowed.";
+        $uploadOK = 0;
+    }
+
+    /*
     //Check if image file is a actual image or fake image
     if (isset($_POST["submitFile"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -74,6 +83,19 @@
             echo "File is not an image.";
             $uploadOK = 0;
         }
+    }
+    */
+
+    //Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists. Please change file name and try again.";
+        $uploadOK = 0;
+    }
+
+    //Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOK = 0;
     }
     ?>
 
