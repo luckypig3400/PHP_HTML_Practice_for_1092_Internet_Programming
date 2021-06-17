@@ -59,8 +59,10 @@
     </form>
 
     <?php
+
     error_reporting(E_ERROR | E_PARSE);
-    //隱藏PHP Warning:https://stackoverflow.com/questions/1987579/remove-warning-messages-in-php
+    //隱藏PHP Warning訊息:
+    //https://stackoverflow.com/questions/1987579/remove-warning-messages-in-php
 
     //PHP檔案上傳參考:
     //https://www.w3schools.com/php/php_file_upload.asp
