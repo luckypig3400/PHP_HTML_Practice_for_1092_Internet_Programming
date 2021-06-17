@@ -88,8 +88,9 @@
 
         //Check if file already exists
         if (file_exists($target_file)) {
-            echo "Sorry, file already exists. Please change file name and try again.<br>";
+            echo "Sorry, file already exists. Please change file name and try again.<br>以下是已經存在的檔案內容:";
             $uploadOK = 0;
+            readCSVandPrintAsTable($target_file);
         }
 
         //Check file size
