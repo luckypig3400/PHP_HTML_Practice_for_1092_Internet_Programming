@@ -49,6 +49,34 @@
         fclose($handle);
     }
     ?>
+
+    <h3>上傳CSV讀取範例</h3>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        請選擇要上傳的CSV檔案:
+        <input type="file" name="fileToUpload">
+        <input type="submit" value="上傳CSV" name="submitFile">
+    </form>
+
+    <?php
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOK = 1;
+    $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    //Check if image file is a actual image or fake image
+    if (isset($_POST["submitFile"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOK = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOK = 0;
+        }
+    }
+    ?>
+
 </body>
 
 <script src="assets/js/readCSV.js"></script>
