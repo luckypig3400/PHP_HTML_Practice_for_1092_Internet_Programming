@@ -10,3 +10,9 @@ function changePGtext() {
         btn.innerHTML = "我看的到你";
     }
 }
+
+//https://www.w3schools.com/howto/howto_js_toggle_dark_mode.asp
+function toggleDM(){
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+}

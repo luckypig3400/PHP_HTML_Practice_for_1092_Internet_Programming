@@ -5,6 +5,13 @@ https://www.w3schools.com/css/css_align.asp
 body {
     text-align: center;
     margin: 6%;
+    background-color: white;
+    color: black;
+}
+
+.dark-mode {
+    background-color: #1c2021;
+    color: white;
 }
 
 a {
