@@ -24,30 +24,36 @@
     isset($_GET['filePath']) ? $filePath = $_GET['filePath'] : $filePath = "csv/exampleFormat.csv";
     //https://stackoverflow.com/questions/2805427/how-to-extract-data-from-csv-file-in-php
 
-    $row = 1; //第一列為標題
-    if (($handle = fopen($filePath, "r")) !== false) {
-        while (($data = fgetcsv($handle, 66666, ",")) !== false) {
-            $numOfColumns = count($data);
-            //echo "<p> $numOfColumns fields in line $row : <br> </p>\n";
+    readCSVandPrintAsTable($filePath);
 
-            if ($row == 1) echo "<div style=\"overflow-x:auto;\"><table border=\"3px\" align=\"center\">"; //遇到第一列先建立table
-            echo "<tr>";
-            for ($c = 0; $c < $numOfColumns; $c++) { //c 表示column
-                if ($row == 1) { //title row (columns name)
-                    echo "<th>" . $data[$c] . "</th>";
-                } else { //content rows (columns content)
-                    echo "<td>" . $data[$c] . "</td>";
+    function readCSVandPrintAsTable($filePathWithFileName)
+    {
+        $row = 1; //第一列為標題
+        if (($handle = fopen($filePathWithFileName, "r")) !== false) {
+            while (($data = fgetcsv($handle, 66666, ",")) !== false) {
+                $numOfColumns = count($data);
+                //echo "<p> $numOfColumns fields in line $row : <br> </p>\n";
+
+                if ($row == 1) echo "<div style=\"overflow-x:auto;\"><table border=\"3px\" align=\"center\">"; //遇到第一列先建立table
+                echo "<tr>";
+                for ($c = 0; $c < $numOfColumns; $c++) { //c 表示column
+                    if ($row == 1) { //title row (columns name)
+                        echo "<th>" . $data[$c] . "</th>";
+                    } else { //content rows (columns content)
+                        echo "<td>" . $data[$c] . "</td>";
+                    }
                 }
-            }
-            echo "</tr>";
+                echo "</tr>";
 
-            $row++;
+                $row++;
+            }
+            echo "</table></div>";
+            //響應式表格:
+            //https://www.w3schools.com/howto/howto_css_table_responsive.asp
+            fclose($handle);
         }
-        echo "</table></div>";
-        //響應式表格:
-        //https://www.w3schools.com/howto/howto_css_table_responsive.asp
-        fclose($handle);
     }
+
     ?>
 
     <h3>上傳CSV讀取範例</h3>
@@ -99,6 +105,8 @@
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $userUploadedFileName = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
                 echo "Your file:" . $userUploadedFileName . " has been uploaded!";
+
+                readCSVandPrintAsTable($target_file);
             } else {
                 echo "Oops ! Sorry, there was an error uploading your file.";
             }
