@@ -59,6 +59,9 @@
     </form>
 
     <?php
+    error_reporting(E_ERROR | E_PARSE);
+    //隱藏PHP Warning:https://stackoverflow.com/questions/1987579/remove-warning-messages-in-php
+
     //PHP檔案上傳參考:
     //https://www.w3schools.com/php/php_file_upload.asp
     $target_dir = "uploads/";
@@ -66,50 +69,40 @@
     $uploadOK = 1;
     $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    //Allow certain file formats
-    if ($fileType == "csv") {
-        $uploadOK = 1;
-    } else {
-        echo "Sorry, only <b>CSV</b> files are allowed.<br>";
-        $uploadOK = 0;
-    }
-
-    /*
-    //Check if image file is a actual image or fake image
-    if (isset($_POST["submitFile"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
+    if (isset($_FILES["fileToUpload"]["name"])) {
+        //Allow certain file formats
+        if ($fileType == "csv") {
             $uploadOK = 1;
         } else {
-            echo "File is not an image.";
+            echo "Sorry, only <b>CSV</b> files are allowed.<br>";
             $uploadOK = 0;
         }
-    }
-    */
 
-    //Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists. Please change file name and try again.<br>";
-        $uploadOK = 0;
-    }
-
-    //Check file size
-    if ($_FILES["fileToUpload"]["size"] > 5000000) {
-        echo "Sorry, your file is too <b>large</b>.<br>";
-        $uploadOK = 0;
-    }
-
-    //Check if $uploadOK is set to 0 by error
-    if ($uploadOK == 0) {
-        echo "Sorry, your file was not uploaded. Please see the error message above.<br>";
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $userUploadedFileName = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
-            echo "Your file:" . $userUploadedFileName . "has been uploaded!";
-        } else {
-            echo "Oops ! Sorry, there was an error uploading your file.";
+        //Check if file already exists
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists. Please change file name and try again.<br>";
+            $uploadOK = 0;
         }
+
+        //Check file size
+        if ($_FILES["fileToUpload"]["size"] > 5000000) {
+            echo "Sorry, your file is too <b>large</b>.<br>";
+            $uploadOK = 0;
+        }
+
+        //Check if $uploadOK is set to 0 by error
+        if ($uploadOK == 0) {
+            echo "Sorry, your file was not uploaded. Please see the error message above.<br>";
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                $userUploadedFileName = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
+                echo "Your file:" . $userUploadedFileName . " has been uploaded!";
+            } else {
+                echo "Oops ! Sorry, there was an error uploading your file.";
+            }
+        }
+    } else {
+        //沒有提交檔案，什麼事都不做
     }
 
     ?>
