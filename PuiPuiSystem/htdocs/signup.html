@@ -65,23 +65,26 @@
 
 					<!-- Content -->
 					<div class="content">
-						<form>
+						<form action="signup.php" method="POST">
 							<div class="row gtr-50">
 								<div class="col-6 col-12-mobile">
-									<input type="text" name="name" placeholder="Name" />
+									<input type="text" name="Fname" placeholder="First Name" />
 								</div>
 								<div class="col-6 col-12-mobile">
+									<input type="text" name="Lname" placeholder="Last Name" />
+								</div>
+								<div class="col-12">
 									<input type="text" name="email" placeholder="Email" />
 								</div>
 								<div class="col-12">
-									<input type="text" name="subject" placeholder="Subject" />
+									<input type="password" name="password" placeholder="Password" />
 								</div>
 								<div class="col-12">
-									<textarea name="message" placeholder="Message" rows="7"></textarea>
+									<input type="password" name="passwordCheck" placeholder="Password Again" />
 								</div>
 								<div class="col-12">
 									<ul class="buttons">
-										<li><input type="submit" class="special" value="Send Message" /></li>
+										<li><input type="submit" class="special" value="送出註冊" /></li>
 									</ul>
 								</div>
 							</div>
