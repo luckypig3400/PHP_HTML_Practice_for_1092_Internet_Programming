@@ -59,6 +59,8 @@
     </form>
 
     <?php
+    //PHP檔案上傳參考:
+    //https://www.w3schools.com/php/php_file_upload.asp
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOK = 1;
@@ -68,7 +70,7 @@
     if ($fileType == "csv") {
         $uploadOK = 1;
     } else {
-        echo "Sorry, only CSV files are allowed.";
+        echo "Sorry, only <b>CSV</b> files are allowed.<br>";
         $uploadOK = 0;
     }
 
@@ -88,15 +90,28 @@
 
     //Check if file already exists
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists. Please change file name and try again.";
+        echo "Sorry, file already exists. Please change file name and try again.<br>";
         $uploadOK = 0;
     }
 
     //Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
+    if ($_FILES["fileToUpload"]["size"] > 5000000) {
+        echo "Sorry, your file is too <b>large</b>.<br>";
         $uploadOK = 0;
     }
+
+    //Check if $uploadOK is set to 0 by error
+    if ($uploadOK == 0) {
+        echo "Sorry, your file was not uploaded. Please see the error message above.<br>";
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            $userUploadedFileName = htmlspecialchars(basename($_FILES["fileToUpload"]["name"]));
+            echo "Your file:" . $userUploadedFileName . "has been uploaded!";
+        } else {
+            echo "Oops ! Sorry, there was an error uploading your file.";
+        }
+    }
+
     ?>
 
 </body>
