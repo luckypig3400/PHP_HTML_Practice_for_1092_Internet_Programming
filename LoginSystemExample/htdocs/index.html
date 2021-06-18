@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Debug Page</title>
+    </head>
+
+    <body>
+        <h1>開發專用首頁</h1>
+
+        <h3>各頁面快速選單</h3><br>
+        <a href="register.php">註冊表單</a>
+        <br><br><br>
+        <a href="config.php">資料庫設定</a>
+
+        <h3>~遊樂場~</h3>
+        <div id="playgroundText">
+            你看不到我~~ o(*////▽////*)q
+        </div>
+        <button onclick="changePGtext()" id="IseeU_btn">我看的到你</button>
+        <br>
+        <button onclick="toggleDM()">切換深色/淺色模式</button>
+
+        <script>
+            //https://www.w3schools.com/howto/howto_js_toggle_text.asp
+            function changePGtext() {
+                var x = document.getElementById("playgroundText");
+                var btn = document.getElementById("IseeU_btn");
+                if (x.innerHTML == "你看不到我~~ o(*////▽////*)q") {
+                    x.innerHTML = "哇OAO被你看光光惹`(*>﹏<*)′";
+                    btn.innerHTML = "把我藏起來OwO";
+                } else {
+                    x.innerHTML = "你看不到我~~ o(*////▽////*)q";
+                    btn.innerHTML = "我看的到你";
+                }
+            }
+
+            //https://www.w3schools.com/howto/howto_js_toggle_dark_mode.asp
+            function toggleDM() {
+                var element = document.body;
+                element.classList.toggle("dark-mode");
+            }
+        </script>
+    </body>
+
+    <style>
+        /*style ref:
+        https://www.w3schools.com/css/css_align.asp
+        */
+
+        body {
+            text-align: center;
+            margin: 6%;
+            background-color: white;
+            color: black;
+        }
+
+        .dark-mode {
+            background-color: #1c2021;
+            color: white;
+        }
+
+        a {
+            padding: 14px 16px;
+            color: darkslategrey;
+            font-size: 18px;
+            text-align: center;
+            text-decoration: none;
+            background-color: blanchedalmond;
+            border: 3px solid green;
+        }
+    </style>
+
+</html>
