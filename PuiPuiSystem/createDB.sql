@@ -45,7 +45,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `FName`, `LName`, `Email`, `Password`, `LastLoginTime`, `lastLoginIP`) VALUES
-('adminPuiPui', 'admin', 'PuiPui', 'adminPuiPui@puipui.com', 0x243279243130244767777365324743362f636955743362722e3247364f5a6f3333625745693859754a774d30752f5570552e305949737036716c7a79, '2021-06-17 15:42:14', 'localhost');
+('adminPuiPui', 'admin', 'PuiPui', 'adminPuiPui@puipui.com', 0x7a16313879aca1a7c3d0fa2b744c17e7c3d8326ec596b9dca48e136a6bd2eb8b12ed32018b8a010a4b39ae7152c7899857b2482200438ce8c49f4416c9494257, '2021-06-17 15:42:14', 'localhost');
 
 -- --------------------------------------------------------
 
