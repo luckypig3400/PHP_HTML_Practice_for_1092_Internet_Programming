@@ -105,10 +105,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$param_Fname = $Fname;
 			$param_Lname = $Lname;
 			$param_email = $email;
-			$param_IP = "IP";
+			$param_IP = "New sign up not login yet";
 
 			// Attempt to execute the prepared statement
 			if ($stmt->execute()) {
+				//echo "<script>alert('註冊成功!\n1秒後自動轉跳至登入畫面');</script>";
 				// Redirect to login page
 				header("location: login.php");
 			} else {
