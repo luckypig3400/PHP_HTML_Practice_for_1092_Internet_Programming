@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$userID_err = "userID can only contain letters, numbers, and underscores.";
 	} else {
 		// Prepare a select statement
-		$sql = "SELECT id FROM users WHERE userID = :userID";
+		$sql = "SELECT userID FROM user WHERE userID = :userID";
 
 		if ($stmt = $pdo->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($userID_err) && empty($password_err) && empty($confirm_password_err)) {
 
 		// Prepare an insert statement
-		$sql = "INSERT INTO users (userID, password) VALUES (:userID, :password)";
+		$sql = "INSERT INTO user (userID, password) VALUES (:userID, :password)";
 
 		if ($stmt = $pdo->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
