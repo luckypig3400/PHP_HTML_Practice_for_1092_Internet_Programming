@@ -85,19 +85,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	// Check input errors before inserting in database
-	if (empty($userID_err) && empty($password_err) && empty($confirm_password_err)) {
+	if (empty($userID_err) && empty($password_err) && empty($confirm_password_err) && empty($Fname_err) && empty($Lname_err) && empty($email_err)) {
 
 		// Prepare an insert statement
-		$sql = "INSERT INTO user (userID, password) VALUES (:userID, :password)";
+		$sql = "INSERT INTO user (userID, Fname, Lname, Email, Password, lastLoginIP) VALUES (:userID, :Fname, :Lname, :Email, :password, :lastLoginIP)";
 
 		if ($stmt = $pdo->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
 			$stmt->bindParam(":userID", $param_userID, PDO::PARAM_STR);
+			$stmt->bindParam(":Fname", $param_Fname, PDO::PARAM_STR);
+			$stmt->bindParam(":Lname", $param_Lname, PDO::PARAM_STR);
+			$stmt->bindParam(":Email", $param_email, PDO::PARAM_STR);
 			$stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+			$stmt->bindParam(":lastLoginIP", $param_IP, PDO::PARAM_STR);
 
-			// Set parameters
+			// Set parameters 這邊可以再做個字串處理:例如移除特殊符號防止SQL Injection
 			$param_userID = $userID;
 			$param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+			$param_Fname = $Fname;
+			$param_Lname = $Lname;
+			$param_email = $email;
+			$param_IP = "IP";
 
 			// Attempt to execute the prepared statement
 			if ($stmt->execute()) {
