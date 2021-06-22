@@ -6,11 +6,25 @@
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$userID = $password = $confirm_password = "";
-$userID_err = $password_err = $confirm_password_err = "";
+$userID = $password = $confirm_password = $Fname = $Lname = $email = "";
+$userID_err = $password_err = $confirm_password_err = $Fname_err = $Lname_err = $email_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	// Validate First name
+	if (empty(trim($_POST["Fname"]))) {
+		$Fname_err = "Please enter your First Name.";
+	} else {
+		$Fname = trim($_POST["Fname"]);
+	}
+
+	// Validate Last name
+	if (empty(trim($_POST["Lname"]))) {
+		$Lname_err = "Please enter your Last Name.";
+	} else {
+		$Lname = trim($_POST["Lname"]);
+	}
 
 	// Validate userID
 	if (empty(trim($_POST["userID"]))) {
@@ -42,6 +56,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			// Close statement
 			unset($stmt);
 		}
+	}
+
+	// Validate email
+	if (empty(trim($_POST["email"]))) {
+		$email_err = "Please enter your email.";
+	} else {
+		$email = trim($_POST["email"]);
 	}
 
 	// Validate password
@@ -166,17 +187,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 						<div class="row gtr-50">
 							<div class="col-6 col-12-mobile">
-								<input type="text" name="Fname" placeholder="First Name" />
+								<input type="text" name="Fname" placeholder="名字 First Name" class="form-control <?php echo (!empty($Fname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $Fname; ?>">
+								<span class="invalid-feedback"><?php echo $Fname_err; ?></span>
 							</div>
 							<div class="col-6 col-12-mobile">
-								<input type="text" name="Lname" placeholder="Last Name" />
+								<input type="text" name="Lname" placeholder="姓氏 Last Name" class="form-control <?php echo (!empty($Lname_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $Lname; ?>">
+								<span class="invalid-feedback"><?php echo $Lname_err; ?></span>
 							</div>
 							<div class="col-12">
 								<input type="text" name="userID" placeholder="User ID" class="form-control <?php echo (!empty($userID_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $userID; ?>">
 								<span class="invalid-feedback"><?php echo $userID_err; ?></span>
 							</div>
 							<div class="col-12">
-								<input type="text" name="email" placeholder="Email" />
+								<input type="email" name="email" placeholder="Email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+								<span class="invalid-feedback"><?php echo $email_err; ?></span>
 							</div>
 							<div class="col-12">
 								<input type="password" name="password" placeholder="Password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
