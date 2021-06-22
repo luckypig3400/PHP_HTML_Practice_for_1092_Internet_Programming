@@ -6,34 +6,34 @@
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$userID = $password = $confirm_password = "";
+$userID_err = $password_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	// Validate username
-	if (empty(trim($_POST["username"]))) {
-		$username_err = "Please enter a username.";
-	} elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))) {
-		$username_err = "Username can only contain letters, numbers, and underscores.";
+	// Validate userID
+	if (empty(trim($_POST["userID"]))) {
+		$userID_err = "Please enter a userID.";
+	} elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["userID"]))) {
+		$userID_err = "userID can only contain letters, numbers, and underscores.";
 	} else {
 		// Prepare a select statement
-		$sql = "SELECT id FROM users WHERE username = :username";
+		$sql = "SELECT id FROM users WHERE userID = :userID";
 
 		if ($stmt = $pdo->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
-			$stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+			$stmt->bindParam(":userID", $param_userID, PDO::PARAM_STR);
 
 			// Set parameters
-			$param_username = trim($_POST["username"]);
+			$param_userID = trim($_POST["userID"]);
 
 			// Attempt to execute the prepared statement
 			if ($stmt->execute()) {
 				if ($stmt->rowCount() == 1) {
-					$username_err = "This username is already taken.";
+					$userID_err = "This userID is already taken.";
 				} else {
-					$username = trim($_POST["username"]);
+					$userID = trim($_POST["userID"]);
 				}
 			} else {
 				echo "Oops! Something went wrong. Please try again later.";
@@ -64,18 +64,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	// Check input errors before inserting in database
-	if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+	if (empty($userID_err) && empty($password_err) && empty($confirm_password_err)) {
 
 		// Prepare an insert statement
-		$sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+		$sql = "INSERT INTO users (userID, password) VALUES (:userID, :password)";
 
 		if ($stmt = $pdo->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
-			$stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+			$stmt->bindParam(":userID", $param_userID, PDO::PARAM_STR);
 			$stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
 
 			// Set parameters
-			$param_username = $username;
+			$param_userID = $userID;
 			$param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 
 			// Attempt to execute the prepared statement
@@ -172,8 +172,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 								<input type="text" name="Lname" placeholder="Last Name" />
 							</div>
 							<div class="col-12">
-								<input type="text" name="username" placeholder="User ID" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-								<span class="invalid-feedback"><?php echo $username_err; ?></span>
+								<input type="text" name="userID" placeholder="User ID" class="form-control <?php echo (!empty($userID_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $userID; ?>">
+								<span class="invalid-feedback"><?php echo $userID_err; ?></span>
 							</div>
 							<div class="col-12">
 								<input type="text" name="email" placeholder="Email" />
