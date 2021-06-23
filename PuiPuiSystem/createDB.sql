@@ -43,9 +43,11 @@ CREATE TABLE `user` (
 --
 -- 傾印資料表的資料 `user`
 --
+-- 系統預設帳號為:adminPuiPui
+-- 密碼為:puipui666(採用php的password_hash()中的PASSWORD_DEFAULT算法加密)
 
 INSERT INTO `user` (`userID`, `FName`, `LName`, `Email`, `Password`, `LastLoginTime`, `lastLoginIP`) VALUES
-('adminPuiPui', 'admin', 'PuiPui', 'adminPuiPui@puipui.com', 0x7a16313879aca1a7c3d0fa2b744c17e7c3d8326ec596b9dca48e136a6bd2eb8b12ed32018b8a010a4b39ae7152c7899857b2482200438ce8c49f4416c9494257, '2021-06-17 15:42:14', 'localhost');
+('adminPuiPui', 'admin', 'PuiPui', 'adminPuiPui@puipui.com', '243279243130246f642f4a335065414e4d376c70746f573143674d7165477a4e4f7446677a44514f42705053756262766432724b764a2e356f6a5a47', '2021-06-17 15:42:14', 'localhost');
 
 -- --------------------------------------------------------
 
