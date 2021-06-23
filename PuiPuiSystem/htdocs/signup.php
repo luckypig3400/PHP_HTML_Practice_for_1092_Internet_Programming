@@ -193,6 +193,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 				<!-- Content -->
 				<div class="content">
+					<h2>Sign Up</h2>
+					<p>註冊您專屬的Pui Pui帳號</p>
+
 					<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 						<div class="row gtr-50">
 							<div class="col-6 col-12-mobile">

@@ -14,17 +14,17 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
+$userID = $password = "";
+$userID_err = $password_err = $login_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	// Check if username is empty
-	if (empty(trim($_POST["username"]))) {
-		$username_err = "Please enter username.";
+	// Check if userID is empty
+	if (empty(trim($_POST["userID"]))) {
+		$userID_err = "Please enter userID.";
 	} else {
-		$username = trim($_POST["username"]);
+		$userID = trim($_POST["userID"]);
 	}
 
 	// Check if password is empty
@@ -35,24 +35,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 
 	// Validate credentials
-	if (empty($username_err) && empty($password_err)) {
+	if (empty($userID_err) && empty($password_err)) {
 		// Prepare a select statement
-		$sql = "SELECT id, username, password FROM users WHERE username = :username";
+		$sql = "SELECT id, userID, password FROM users WHERE userID = :userID";
 
 		if ($stmt = $pdo->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
-			$stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+			$stmt->bindParam(":userID", $param_userID, PDO::PARAM_STR);
 
 			// Set parameters
-			$param_username = trim($_POST["username"]);
+			$param_userID = trim($_POST["userID"]);
 
 			// Attempt to execute the prepared statement
 			if ($stmt->execute()) {
-				// Check if username exists, if yes then verify password
+				// Check if userID exists, if yes then verify password
 				if ($stmt->rowCount() == 1) {
 					if ($row = $stmt->fetch()) {
 						$id = $row["id"];
-						$username = $row["username"];
+						$userID = $row["userID"];
 						$hashed_password = $row["password"];
 						if (password_verify($password, $hashed_password)) {
 							// Password is correct, so start a new session
@@ -61,18 +61,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							// Store data in session variables
 							$_SESSION["loggedin"] = true;
 							$_SESSION["id"] = $id;
-							$_SESSION["username"] = $username;
+							$_SESSION["userID"] = $userID;
 
 							// Redirect user to welcome page
 							header("location: welcome.php");
 						} else {
 							// Password is not valid, display a generic error message
-							$login_err = "Invalid username or password.";
+							$login_err = "Invalid userID or password.";
 						}
 					}
 				} else {
-					// Username doesn't exist, display a generic error message
-					$login_err = "Invalid username or password.";
+					// userID doesn't exist, display a generic error message
+					$login_err = "Invalid userID or password.";
 				}
 			} else {
 				echo "Oops! Something went wrong. Please try again later.";
@@ -87,57 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	unset($pdo);
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<title>Login</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<style>
-		body {
-			font: 14px sans-serif;
-		}
-
-		.wrapper {
-			width: 360px;
-			padding: 20px;
-		}
-	</style>
-</head>
-
-<body>
-	<div class="wrapper">
-		<h2>Login</h2>
-		<p>Please fill in your credentials to login.</p>
-
-		<?php
-		if (!empty($login_err)) {
-			echo '<div class="alert alert-danger">' . $login_err . '</div>';
-		}
-		?>
-
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-			<div class="form-group">
-				<label>Username</label>
-				<input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-				<span class="invalid-feedback"><?php echo $username_err; ?></span>
-			</div>
-			<div class="form-group">
-				<label>Password</label>
-				<input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-				<span class="invalid-feedback"><?php echo $password_err; ?></span>
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-primary" value="Login">
-			</div>
-			<p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-		</form>
-	</div>
-</body>
-
-</html>
 
 <!DOCTYPE HTML>
 <!--
@@ -206,46 +155,67 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 				<!-- Content -->
 				<div class="content">
-					<form action="login.php" method="POST">
+					<h2>Login</h2>
+					<p>登入您的Pui Pui帳號</p>
+
+					<?php
+					if (!empty($login_err)) {
+						echo '<div class="alert alert-danger">' . $login_err . '</div>';
+					}
+					?>
+
+					<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
 						<div class="row gtr-50">
 							<div class="col-12">
-								<input type="text" name="email" placeholder="Email" />
+								<input type="text" name="userID" placeholder="User ID" class="form-control <?php echo (!empty($userID_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $userID; ?>">
+								<span class="invalid-feedback"><?php echo $userID_err; ?></span>
 							</div>
 							<div class="col-12">
-								<input type="password" name="password" placeholder="Password" />
+								<input type="password" name="password" placeholder="Password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+								<span class="invalid-feedback"><?php echo $password_err; ?></span>
 							</div>
 							<div class="col-12">
 								<ul class="buttons">
 									<li><input type="submit" class="special" value="登入" /></li>
 								</ul>
 							</div>
+							<div class="col-6 col-12-mobile">
+								<p>還沒有帳號? <a href="signup.php">立即註冊</a>.</p>
+							</div>
+							<div class="col-6 col-12-mobile">
+								<p>Don't have an account? <a href="signup.php">Sign up now</a>.</p>
+							</div>
 						</div>
 					</form>
+
 				</div>
-
 			</section>
-
 		</article>
+	</div>
 
-		<!-- Footer -->
-		<footer id="footer">
+	</section>
 
-			<ul class="icons">
-				<li><a href="#" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon brands circle fa-facebook-f"><span class="label">Facebook</span></a>
-				</li>
-				<li><a href="#" class="icon brands circle fa-google-plus-g"><span class="label">Google+</span></a>
-				</li>
-				<li><a href="#" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
-				<li><a href="#" class="icon brands circle fa-dribbble"><span class="label">Dribbble</span></a></li>
-			</ul>
+	</article>
 
-			<ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
+	<!-- Footer -->
+	<footer id="footer">
 
-		</footer>
+		<ul class="icons">
+			<li><a href="#" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon brands circle fa-facebook-f"><span class="label">Facebook</span></a>
+			</li>
+			<li><a href="#" class="icon brands circle fa-google-plus-g"><span class="label">Google+</span></a>
+			</li>
+			<li><a href="#" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+			<li><a href="#" class="icon brands circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+		</ul>
+
+		<ul class="copyright">
+			<li>&copy; Untitled</li>
+			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+		</ul>
+
+	</footer>
 
 	</div>
 
