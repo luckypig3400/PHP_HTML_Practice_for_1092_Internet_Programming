@@ -255,8 +255,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			</ul>
 
 			<ul class="copyright">
-				<li>&copy; Untitled</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				<li>&copy; Pui Pui System</li>
+				<li>Website Creator: LuckyPig3400</li>
+				<li>Template Design: <a href="http://html5up.net">HTML5 UP</a></li>
 			</ul>
 
 		</footer>
