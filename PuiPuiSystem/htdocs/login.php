@@ -61,8 +61,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 							$_SESSION["loggedin"] = true;
 							$_SESSION["userID"] = $userID;
 
-							// Redirect user to welcome page
-							header("location: welcome.php");
+							// 更新最後登入時間與IP
+							$sqlUpdateLoginInfo =
+								"UPDATE `user` SET `LastLoginTime` = current_timestamp() , `lastLoginIP` = :IP WHERE `user`.`userID` = :userID";
+							if ($stmt = $pdo->prepare($sqlUpdateLoginInfo)) {
+								// 獲取登入IP
+								if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+									$IP = $_SERVER['HTTP_CLIENT_IP'];
+								} else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+									$IP = $_SERVER['HTTP_X_FORWARDED_FOR'];
+								} else {
+									$IP = $_SERVER['REMOTE_ADDR'];
+								} //https://devco.re/blog/2014/06/19/client-ip-detection/
+
+								$param_userID = trim($_POST["userID"]);
+								$param_IP = $IP;
+
+								// 綁定要寫入的變數至SQL語法中
+								$stmt->bindParam(":userID", $param_userID, PDO::PARAM_STR);
+								$stmt->bindParam(":IP", $param_IP, PDO::PARAM_STR);
+
+								if ($stmt->execute()) {
+									// 成功寫入登入資訊
+									// Redirect user to welcome page
+									header("location: welcome.php");
+								} else {
+									echo "Oops 無法寫入登入時間與IP";
+								}
+							}
 						} else {
 							// Password is not valid, display a generic error message
 							$login_err = "Invalid userID or password.";
