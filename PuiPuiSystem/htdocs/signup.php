@@ -156,18 +156,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 					<li class="submenu">
 						<a href="#">功能總覽</a>
 						<ul>
-							<li><a href="left-sidebar.html">Left Sidebar</a></li>
-							<li><a href="right-sidebar.html">Right Sidebar</a></li>
-							<li><a href="no-sidebar.html">No Sidebar</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="joinRoom.php">加入房間</a></li>
+							<li><a href="viewPublicQues.php">劉覽公開題庫</a></li>
 							<li class="submenu">
-								<a href="#">Submenu</a>
+								<a href="#">會員專屬</a>
 								<ul>
-									<li><a href="#">子菜單1</a></li>
-									<li><a href="#">子菜單2</a></li>
-									<li><a href="#">子菜單3</a></li>
+									<li><a href="addNewQues.php">建立新的題庫</a></li>
+									<li><a href="editQues.php">編輯我的題庫</a></li>
+									<li><a href="createRoom.php">建立房間</a></li>
 								</ul>
 							</li>
+							<li><a href="contact.html">聯繫我們</a></li>
 						</ul>
 					</li>
 					<li><a href="signup.php" class="button primary">立即註冊</a></li>
