@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Validate credentials
 	if (empty($userID_err) && empty($password_err)) {
 		// Prepare a select statement
-		$sql = "SELECT id, userID, password FROM users WHERE userID = :userID";
+		$sql = "SELECT userID, password FROM user WHERE userID = :userID";
 
 		if ($stmt = $pdo->prepare($sql)) {
 			// Bind variables to the prepared statement as parameters
@@ -51,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				// Check if userID exists, if yes then verify password
 				if ($stmt->rowCount() == 1) {
 					if ($row = $stmt->fetch()) {
-						$id = $row["id"];
 						$userID = $row["userID"];
 						$hashed_password = $row["password"];
 						if (password_verify($password, $hashed_password)) {
@@ -60,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 							// Store data in session variables
 							$_SESSION["loggedin"] = true;
-							$_SESSION["id"] = $id;
 							$_SESSION["userID"] = $userID;
 
 							// Redirect user to welcome page
