@@ -65,53 +65,79 @@
         <!-- Main -->
         <article id="main">
 
-            <!-- One -->
-            <section class="wrapper style4 special container medium">
-
-                <!-- Content -->
-                <div class="content">
-                    <h2>公開題庫列表</h2>
-
-                    <?php
-                    require_once "config.php";
-
-                    // Prepare a select statement
-                    $sql = "SELECT * FROM `userquestions` WHERE PublishStatus = 'Y'";
-
-                    if ($stmt = $pdo->prepare($sql)) {
-
-                        // Attempt to execute the prepared statement
-                        if ($stmt->execute()) {
-                            // Check if userID exists, if yes then verify password
-                            if ($stmt->rowCount() >= 1) {
-                                $rowCount = $stmt->rowCount();
-
-                                for ($i = 1; $i <= $rowCount; $i++) {
-
-                                    if ($row = $stmt->fetch()) { //用$stmt->fetch()來抓取資料
-                                        echo "第" . $i . "列，題目內容為:" . $row["Question"] . "<br>";
-                                    }
-                                }
-                            } else {
-                                // 目前沒有公開題庫
-                                echo "<p>很抱歉! 目前沒有公開題庫QAQ</p>";
-                            }
-                        } else {
-                            echo "Oops! Something went wrong. Please try again later.";
-                        }
-                        // Close statement
-                        unset($stmt);
-                    }
-                    // Close connection
-                    unset($pdo);
-
-                    ?>
-                </div>
-
-            </section>
+                <h2>公開題庫列表</h2>
 
         </article>
 
+        <div style="overflow-x:auto;">
+            <table>
+                <tr>
+                    <th>資料筆數</th>
+                    <th>題目</th>
+                    <th>選項1</th>
+                    <th>選項2</th>
+                    <th>選項3</th>
+                    <th>選項4</th>
+                    <th>解答</th>
+                    <th>選項1詳解</th>
+                    <th>選項2詳解</th>
+                    <th>選項3詳解</th>
+                    <th>選項4詳解</th>
+                    <th>科目</th>
+                    <th>題庫集標題</th>
+                    <th>章節</th>
+                </tr>
+
+                <?php
+                require_once "config.php";
+
+                // Prepare a select statement
+                $sql = "SELECT * FROM `userquestions` WHERE PublishStatus = 'Y'";
+
+                if ($stmt = $pdo->prepare($sql)) {
+
+                    // Attempt to execute the prepared statement
+                    if ($stmt->execute()) {
+                        // Check if userID exists, if yes then verify password
+                        if ($stmt->rowCount() >= 1) {
+                            $rowCount = $stmt->rowCount();
+
+                            for ($i = 1; $i <= $rowCount; $i++) {
+                                echo "<tr>";
+                                if ($row = $stmt->fetch()) { //用$stmt->fetch()來抓取資料
+                                    echo "<td>" . $i . "</td>";
+                                    echo "<td>" . $row["Question"] . "</td>";
+                                    echo "<td>" . $row["Answer1"] . "</td>";
+                                    echo "<td>" . $row["Answer2"] . "</td>";
+                                    echo "<td>" . $row["Answer3"] . "</td>";
+                                    echo "<td>" . $row["Answer4"] . "</td>";
+                                    echo "<td>" . $row["Correct_Ans"] . "</td>";
+                                    echo "<td>" . $row["Detailed1"] . "</td>";
+                                    echo "<td>" . $row["Detailed2"] . "</td>";
+                                    echo "<td>" . $row["Detailed3"] . "</td>";
+                                    echo "<td>" . $row["Detailed4"] . "</td>";
+                                    echo "<td>" . $row["Subject"] . "</td>";
+                                    echo "<td>" . $row["Title"] . "</td>";
+                                    echo "<td>" . $row["Chapter"] . "</td>";
+                                }
+                                echo "</tr>";
+                            }
+                        } else {
+                            // 目前沒有公開題庫
+                            echo "<p>很抱歉! 目前沒有公開題庫QAQ</p>";
+                        }
+                    } else {
+                        echo "Oops! Something went wrong. Please try again later.";
+                    }
+                    // Close statement
+                    unset($stmt);
+                }
+                // Close connection
+                unset($pdo);
+
+                ?>
+            </table>
+        </div>
 
         <!-- Footer -->
         <footer id="footer">
