@@ -47,7 +47,7 @@
                     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                         echo "<li><a href='reset-password.php' class='button alert-danger'>重設密碼</a></li><li><a href='logout.php' class='button primary'>登出帳號</a></li>";
                     } else {
-                        echo "</li><li><a href='signup.php' class='button primary'>註冊帳號</a></li>";
+                        echo "</li><li><a href='signup.php' class='button primary'>註冊帳號</a></li><li><a href='login.php' class='button alert-danger'>登入帳號</a></li>";
                     }
                     ?>
                 </ul>
@@ -65,7 +65,12 @@
         <!-- Main -->
         <article id="main">
 
+            <!-- One -->
+            <section class="wrapper style4 special container medium">
+
                 <h2>公開題庫列表</h2>
+
+            </section>
 
         </article>
 
