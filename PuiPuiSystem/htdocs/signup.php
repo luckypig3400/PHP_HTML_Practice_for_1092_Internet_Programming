@@ -2,6 +2,13 @@
 //登入系統參考:
 //https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php
 
+// 引導已經登入的使用者留在Welcome Page不再註冊
+session_start();
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
+	header("location: welcome.php");
+	exit;
+}
+
 // Include config file
 require_once "config.php";
 
