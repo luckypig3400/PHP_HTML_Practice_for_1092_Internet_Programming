@@ -72,7 +72,40 @@
                 <div class="content">
                     <h2>公開題庫列表</h2>
 
-                    
+                    <?php
+                    require_once "config.php";
+
+                    // Prepare a select statement
+                    $sql = "SELECT * FROM `userquestions` WHERE PublishStatus = 'Y'";
+
+                    if ($stmt = $pdo->prepare($sql)) {
+
+                        // Attempt to execute the prepared statement
+                        if ($stmt->execute()) {
+                            // Check if userID exists, if yes then verify password
+                            if ($stmt->rowCount() >= 1) {
+                                $rowCount = $stmt->rowCount();
+
+                                for ($i = 1; $i <= $rowCount; $i++) {
+
+                                    if ($row = $stmt->fetch()) { //用$stmt->fetch()來抓取資料
+                                        echo "第" . $i . "列，題目內容為:" . $row["Question"] . "<br>";
+                                    }
+                                }
+                            } else {
+                                // 目前沒有公開題庫
+                                echo "<p>很抱歉! 目前沒有公開題庫QAQ</p>";
+                            }
+                        } else {
+                            echo "Oops! Something went wrong. Please try again later.";
+                        }
+                        // Close statement
+                        unset($stmt);
+                    }
+                    // Close connection
+                    unset($pdo);
+
+                    ?>
                 </div>
 
             </section>
