@@ -20,7 +20,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <html>
 
 <head>
-    <title>Home-PuiPuiSystem</title>
+    <title>Welcome-PuiPuiSystem</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -48,7 +48,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                                 <a href="#">會員專屬</a>
                                 <ul>
                                     <li><a href="addNewQues.php">建立新的題庫</a></li>
-                                    <li><a href="editQues.php">編輯我的題庫</a></li>
+                                    <li><a href="viewMyQues.php">瀏覽我的題庫</a></li>
                                     <li><a href="createRoom.php">建立房間</a></li>
                                 </ul>
                             </li>
