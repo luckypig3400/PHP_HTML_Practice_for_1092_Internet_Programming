@@ -17,7 +17,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 <html>
 
 <head>
-    <title>Welcome-PuiPuiSystem</title>
+    <title>我的題庫-PuiPuiSystem</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -35,7 +35,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <h1 id="logo"><a href="index.html">Pui Pui 系統</a></h1>
             <nav id="nav">
                 <ul>
-                    <li class="current"><a href="index.html">系統首頁</a></li>
+                    <li class="current"><a href="welcome.php">系統首頁</a></li>
                     <li class="submenu">
                         <a href="#">功能總覽</a>
                         <ul>
