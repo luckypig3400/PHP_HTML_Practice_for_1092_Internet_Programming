@@ -7,7 +7,7 @@
 <html>
 
 <head>
-    <title>我的題庫-PuiPuiSystem</title>
+    <title>公開題庫-PuiPuiSystem</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -42,17 +42,23 @@
                             <li><a href="contact.html">聯繫我們</a></li>
                         </ul>
                     </li>
-                    
+                    <?php
+                    session_start();
+                    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+                        echo "<li><a href='reset-password.php' class='button alert-danger'>重設密碼</a></li><li><a href='logout.php' class='button primary'>登出帳號</a></li>";
+                    } else {
+                        echo "</li><li><a href='signup.php' class='button primary'>註冊帳號</a></li>";
+                    }
+                    ?>
                 </ul>
             </nav>
         </header>
 
         <section id="banner">
             <header class="special container">
-                <span class="icon solid fa-book-open"></span>
-                <h2>我的題庫</h2>
-                <p>瀏覽個人題庫集</p>
-                <p>開始遊玩或編輯</p>
+                <span class="icon solid fa-globe"></span>
+                <h2>公開題庫</h2>
+                <p>瀏覽公開題庫集並開始遊玩</p>
             </header>
         </section>
 
@@ -64,7 +70,9 @@
 
                 <!-- Content -->
                 <div class="content">
-                    <h2>我的題庫列表</h2>
+                    <h2>公開題庫列表</h2>
+
+                    
                 </div>
 
             </section>
