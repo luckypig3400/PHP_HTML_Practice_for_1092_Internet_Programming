@@ -67,16 +67,18 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             <header>
                 <h2><strong>~Welcome~</strong></h2>
                 <p>&nbsp;</p>
-                <p>Hi, <b><?php echo htmlspecialchars($_SESSION["userID"]); ?></b>.</p>
+                <p>&nbsp;</p>
+                <p>Hi, <b>
+                        <?php echo htmlspecialchars($_SESSION["userID"]); ?>
+                    </b>.</p>
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
             </header>
             <footer>
                 <ul class="buttons">
-                    <li><a href="viewMyQues.php" class="button primary">我的題庫</a></li>
+                    <li><a href="#main" class="button primary scrolly">開始使用</a></li>
                 </ul>
             </footer>
-            <p>&nbsp;</p>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
         </section>
@@ -88,8 +90,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 <span class="icon solid fa-chart-bar"></span>
                 <h2><strong>Pui Pui</strong>系統功能總覽</h2>
                 <p>&nbsp;</p>
-                <p>新增題庫功能</p>
-                <p>&nbsp;</p>
             </header>
 
             <section class="wrapper style1 container special">
@@ -97,35 +97,48 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                     <div class="col-4 col-12-narrower">
 
                         <section>
-                            <span class="icon solid featured fa-check"></span>
+                            <span class="icon solid featured fa-book-medical"></span>
                             <header>
-                                <h3>特點1</h3>
+                                <h3>建立題庫</h3>
                             </header>
-                            <p>耶，我們系統有這項特點是其他系統沒有的</p>
+                            <p>讓您輕鬆建立自己的題庫，提供舒適簡潔的介面方便您新增/編輯題目，也提供CSV文件讓您可以方便快速匯入大量題目</p>
                         </section>
-
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="addNewQues.php" class="button small">立即前往</a></li>
+                            </ul>
+                        </footer>
                     </div>
                     <div class="col-4 col-12-narrower">
 
                         <section>
-                            <span class="icon solid featured fa-check"></span>
+                            <span class="icon solid featured fa-gamepad"></span>
                             <header>
-                                <h3>特點2</h3>
+                                <h3>遊戲模式</h3>
                             </header>
-                            <p>耶，我們系統有這項特點是其他系統沒有的</p>
+                            <p>選擇題遊戲模式，可選擇計時模擬考試(結束後公布解答)，或是複習模式(無時間限制並及時公布解答)<br><br></p>
                         </section>
-
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="viewMyQues.php" class="button small">立即前往</a></li>
+                            </ul>
+                        </footer>
                     </div>
                     <div class="col-4 col-12-narrower">
 
                         <section>
-                            <span class="icon solid featured fa-check"></span>
+                            <span class="icon solid featured fa-warehouse"></span>
                             <header>
-                                <h3>特點3</h3>
+                                <h3>創建房間</h3>
                             </header>
-                            <p>耶，我們系統有這項特點是其他系統沒有的</p>
+                            <p>自己一個人遊玩太無趣? 沒問題!<br>建立房間邀請好友一同加入一較高下! 一同遊玩更有趣!<br><br></p>
                         </section>
 
+                        <footer>
+                            <ul class="buttons">
+                                <li><a href="createRoom.php" class="button small">立即前往</a></li>
+                            </ul>
+                        </footer>
                     </div>
                 </div>
             </section>
